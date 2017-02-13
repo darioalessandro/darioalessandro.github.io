@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "0 Golang: Installing Go in Mac OS"
+title:  "0 Golang: Installing Go on Mac OS"
 date:   2017-02-12 19:26:32 -0500
 categories: jekyll update
 ---

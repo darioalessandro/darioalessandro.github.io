@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-
+Crazy Developer, working for General Motors in very interesting projects!
 
 
 You can find the source code for the Jekyll new theme at:
