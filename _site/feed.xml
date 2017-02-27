@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T21:53:18-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T21:54:58-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
 </subtitle><entry><title type="html">3 Golang: Package Management</title><link href="http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management.html" rel="alternate" type="text/html" title="3 Golang: Package Management" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management.html">&lt;h1 id=&quot;go-package-management&quot;&gt;Go Package Management&lt;/h1&gt;
 
 &lt;p&gt;&lt;b&gt;Objective: &lt;/b&gt; Determine package manager to be used with go projects and walk through the basics.&lt;/p&gt;
@@ -15,7 +15,7 @@
 
 &lt;p&gt;It IS, however, the consensus effort of most of the Go community, and being integrated into the &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt; toolchain is the goal.&lt;/p&gt;
 
-&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+&lt;h2 id=&quot;usage-taken-from-dep-&quot;&gt;Usage (taken from &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt; )&lt;/h2&gt;
 
 &lt;p&gt;Get dep tool via&lt;/p&gt;
 
@@ -27,6 +27,12 @@
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep init
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure -update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To update a dependency to a new version, you might run&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure github.com/pkg/errors@^0.8.0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</content><summary type="html">Go Package Management</summary></entry><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
 

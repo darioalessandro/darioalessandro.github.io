@@ -21,7 +21,7 @@ Dep is a prototype dependency management tool. It requires Go 1.7 or newer to co
 
 It IS, however, the consensus effort of most of the Go community, and being integrated into the `go` toolchain is the goal.
 
-## Usage
+## Usage (taken from [dep]( https://github.com/golang/dep) )
 
 Get dep tool via
 
@@ -36,3 +36,8 @@ $ dep init
 $ dep ensure -update
 ```
 
+To update a dependency to a new version, you might run
+
+```sh
+$ dep ensure github.com/pkg/errors@^0.8.0
+```
