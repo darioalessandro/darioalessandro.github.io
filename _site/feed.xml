@@ -1,38 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T22:29:23-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">3 Golang: Package Management and Build Tool</title><link href="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-package-management-and-build-tool.html" rel="alternate" type="text/html" title="3 Golang: Package Management and Build Tool" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-package-management-and-build-tool</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-package-management-and-build-tool.html">&lt;h1 id=&quot;go-package-management-and-build-tool&quot;&gt;Go Package Management and Build Tool&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T23:52:47-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">3 Golang: Dependency Management</title><link href="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html" rel="alternate" type="text/html" title="3 Golang: Dependency Management" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html">&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
 
-&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;Determine package manager and build tool to be used with go projects and walk through the basics.&lt;/p&gt;
+&lt;p&gt;Determine good options for dependency management tools and walk through the basics.&lt;/p&gt;
 
 &lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;Managing dependencies is one of the basic building blocks of any decent modern programming language toolchain.&lt;/p&gt;
+
+&lt;h3 id=&quot;java&quot;&gt;Java:&lt;/h3&gt;
 
 &lt;p&gt;For Java we have the next:&lt;/p&gt;
 
 &lt;ol&gt;
     &lt;li&gt; &lt;a href=&quot;https://maven.apache.org&quot;&gt;Maven&lt;/a&gt; Dependency Management + Build Tool.&lt;/li&gt;
     &lt;li&gt; &lt;a href=&quot;http://ant.apache.org/ivy/&quot;&gt;Ivy&lt;/a&gt; Dependency Management.&lt;/li&gt;
-    &lt;li&gt; &lt;a href=&quot;http://www.scala-sbt.org&quot;&gt;SBT&lt;/a&gt; Build Tool, is uses ivy for Dependency Management.&lt;/li&gt;
-    &lt;li&gt; &lt;a href=&quot;https://gradle.org/&quot;&gt;Gradle&lt;/a&gt; Build Tool and it uses maven for Dependency Management.&lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;http://www.scala-sbt.org&quot;&gt;SBT&lt;/a&gt; Build Tool, it uses Ivy for Dependency Management.&lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;https://gradle.org/&quot;&gt;Gradle&lt;/a&gt; Build Tool and it uses Maven for Dependency Management.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Golang seems to have a huge vibrant community of devs working in parallel to build the tool chain.&lt;/p&gt;
+&lt;p&gt;All the above are mature tools, with great support and different capabilites, I tend to like sbt + ivy because it is not some crappy scripting thing, is a full fledged
+code driven build tool which allows for max flexibility and customization.&lt;/p&gt;
+
+&lt;h3 id=&quot;go&quot;&gt;Go:&lt;/h3&gt;
+
+&lt;p&gt;Go seems to have a huge vibrant community of devs working in parallel to build the tool chain.&lt;/p&gt;
+
+&lt;p&gt;Today we will explore a few ideas around package management and build tools.&lt;/p&gt;
+
+&lt;h2 id=&quot;go-get-command&quot;&gt;“go get” command&lt;/h2&gt;
+
+&lt;p&gt;As of today, the official way to get code from a website to your $GOPATH is&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;go get
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I find it very pedestrian, looks like a placeholder that, understandably, the Go team had to have to concentrate on the language.&lt;/p&gt;
+
+&lt;p&gt;There’s no way (that I am aware of) to specify the version of the dependency that you want, it always pulls the latest.&lt;/p&gt;
+
+&lt;p&gt;This makes it really hard to create reproducible builds.&lt;/p&gt;
+
+&lt;p&gt;One good thing is that it is capable of pulling code from git repos.&lt;/p&gt;
+
+&lt;h2 id=&quot;godep&quot;&gt;GoDep&lt;/h2&gt;
+
+&lt;p&gt;** (Excerpt From: Sau Sheong Chang. “Go Web Programming.”)&lt;/p&gt;
+
+&lt;p&gt;Heroku uses godep (https://github.com/tools/godep) to manage Go dependencies. To install godep, use the standard go get command:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; go get github.com/tools/godep
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once godep is installed, you need to use it to bring in your dependencies. In the root directory of your web service, run this command:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;godep save
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This command will create a directory named Godeps, retrieve all the dependencies in your code, and copy their source code into the directory Godeps/_workspace.&lt;/p&gt;
+
+&lt;p&gt;It will also create a file named Godeps.json that lists all your dependencies. This listing shows an example of the Godeps.json file.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;ImportPath&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;github.com/sausheong/ws-h&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;GoVersion&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;go1.4.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;Deps&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;ImportPath&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;github.com/lib/pq&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;Comment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;go1.0-cutoff-31-ga33d605&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;Rev&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a33d6053e025943d5dc89dfa1f35fe5500618df7&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;To learn more about godep, please go to the &lt;a href=&quot;https://github.com/tools/godep&quot;&gt;godep github site&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;dep&quot;&gt;Dep&lt;/h2&gt;
 
 &lt;p&gt;According to &lt;a href=&quot;https://github.com/golang/go/wiki/PackageManagementTools&quot;&gt;PackageManagementTools&lt;/a&gt; the official package manager is &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;warning&quot;&gt;Warning:&lt;/h2&gt;
+&lt;p&gt;&lt;b&gt;Warning!!!:&lt;/b&gt; One big bummer is that even when the Go team says that dep is the official dependency manager, you will notice that the dep page states that:&lt;/p&gt;
 
-&lt;p&gt;One big bummer is that even when the Go team says that dep is the official dependency manager, you will notice that the dep page states that:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Dep is a prototype dependency management tool. It requires Go 1.7 or newer to compile.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;Dep is a prototype dependency management tool. It requires Go 1.7 or newer to compile.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Dep is NOT an official tool. It is not (yet) blessed by the Go team.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h3 id=&quot;dep-is-not-an-official-tool-it-is-not-yet-blessed-by-the-go-team&quot;&gt;Dep is NOT an official tool. It is not (yet) blessed by the Go team.&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;It IS, however, the consensus effort of most of the Go community, and being integrated into the &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt; toolchain is the goal.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;It IS, however, the consensus effort of most of the Go community, and being integrated into the &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt; toolchain is the goal.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Pre-alpha. Lots of functionality is knowingly missing or broken. The repository is open to solicit feedback and contributions from the community.
+Please see below for feedback and contribution guidelines.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h2 id=&quot;usage-taken-from-dep-&quot;&gt;Usage (taken from &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt; )&lt;/h2&gt;
+&lt;h3 id=&quot;usage-taken-from-dep-&quot;&gt;Usage (taken from &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt; )&lt;/h3&gt;
 
 &lt;p&gt;Get dep tool via&lt;/p&gt;
 
@@ -49,9 +118,27 @@
 
 &lt;p&gt;To update a dependency to a new version, you might run&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure github.com/pkg/errors@^0.8.0
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure github.com/gorilla/websocket@^1.1.0
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><summary type="html">Go Package Management and Build Tool</summary></entry><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then run&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To make sure that dep downloaded the package, run:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dep status
+PROJECT                       CONSTRAINT  VERSION  REVISION  LATEST  PKGS USED
+github.com/gorilla/websocket  ^1.1.0      v1.1.0   3ab3a8b   v1.1.0  1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Seems like godep and dep are two real options to use, I will try to use dep and I’ll share my experiences through this blog.&lt;/p&gt;</content><summary type="html">Objectives</summary></entry><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;2) Run:&lt;/p&gt;
 
