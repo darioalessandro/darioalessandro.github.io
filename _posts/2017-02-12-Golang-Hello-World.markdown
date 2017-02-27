@@ -26,3 +26,4 @@ func main() {
 {% highlight bash%}
 go run hello.go
 {% endhighlight %}
+

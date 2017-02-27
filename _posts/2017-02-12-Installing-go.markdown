@@ -13,4 +13,4 @@ categories: jekyll update
 brew install go
 {% endhighlight %}
 
-3) To code and run your first app, please go to the [Golang Hello World tutorial]({{ site.baseurl }}{% link _posts/2017-02-12-1-Golang-Hello-World.markdown %})
+3) To code and run your first app, please go to the [Golang Hello World tutorial]({{ site.baseurl }}{% link _posts/2017-02-12-Golang-Hello-World.markdown %})

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-12T20:23:18-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/1-Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/1-Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/1-Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-12T21:15:44-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;2) Run:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;brew install go&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;3) To code and run your first app, please go to the &lt;a href=&quot;/jekyll/update/2017/02/12/1-Golang-Hello-World.html&quot;&gt;Golang Hello World tutorial&lt;/a&gt;&lt;/p&gt;</content><summary type="html">1) Install homebrew following the instructions @Homebrew</summary></entry><entry><title type="html">1 Golang: mandatory Hello World on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/1-Golang-Hello-World.html" rel="alternate" type="text/html" title="1 Golang: mandatory Hello World on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/1-Golang-Hello-World</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/1-Golang-Hello-World.html">&lt;ul&gt;
+&lt;p&gt;3) To code and run your first app, please go to the &lt;a href=&quot;/jekyll/update/2017/02/12/Golang-Hello-World.html&quot;&gt;Golang Hello World tutorial&lt;/a&gt;&lt;/p&gt;</content><summary type="html">1) Install homebrew following the instructions @Homebrew</summary></entry><entry><title type="html">1 Golang: mandatory Hello World on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Golang-Hello-World.html" rel="alternate" type="text/html" title="1 Golang: mandatory Hello World on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Golang-Hello-World</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Golang-Hello-World.html">&lt;ul&gt;
   &lt;li&gt;Open the terminal, create a directory to put all the demos for this tutorial.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -49,4 +49,14 @@ func main() {
 }
 
 
-  Then run</summary></entry></feed>
+  Then run</summary></entry><entry><title type="html">2 Golang: Creating a WebSocket Server</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Creating-A-Web-Socket-Server.html" rel="alternate" type="text/html" title="2 Golang: Creating a WebSocket Server" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Creating-A-Web-Socket-Server</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Creating-A-Web-Socket-Server.html">&lt;h1 id=&quot;objective&quot;&gt;Objective&lt;/h1&gt;
+
+&lt;p&gt;Create a WS Server that mantains a map with all the connection and it is capable to send messages to a particular client using an id.&lt;/p&gt;
+
+&lt;h1 id=&quot;architecture&quot;&gt;Architecture&lt;/h1&gt;
+
+&lt;h1 id=&quot;code&quot;&gt;Code&lt;/h1&gt;
+
+&lt;p&gt;&amp;lt;% highlight bash %&amp;gt;
+go get github.com/gorilla/websocket
+&amp;lt;% endhighlight %&amp;gt;&lt;/p&gt;</content><summary type="html">Objective</summary></entry></feed>
