@@ -1,13 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T21:55:36-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">3 Golang: Package Management</title><link href="http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management.html" rel="alternate" type="text/html" title="3 Golang: Package Management" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management.html">&lt;h1 id=&quot;go-package-management&quot;&gt;Go Package Management&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T22:29:23-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">3 Golang: Package Management and Build Tool</title><link href="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-package-management-and-build-tool.html" rel="alternate" type="text/html" title="3 Golang: Package Management and Build Tool" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-package-management-and-build-tool</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-package-management-and-build-tool.html">&lt;h1 id=&quot;go-package-management-and-build-tool&quot;&gt;Go Package Management and Build Tool&lt;/h1&gt;
 
-&lt;p&gt;&lt;b&gt;Objective: &lt;/b&gt; Determine package manager to be used with go projects and walk through the basics.&lt;/p&gt;
+&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
+
+&lt;p&gt;Determine package manager and build tool to be used with go projects and walk through the basics.&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;Managing dependencies is one of the basic building blocks of any decent modern programming language toolchain.&lt;/p&gt;
+
+&lt;p&gt;For Java we have the next:&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt; &lt;a href=&quot;https://maven.apache.org&quot;&gt;Maven&lt;/a&gt; Dependency Management + Build Tool.&lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;http://ant.apache.org/ivy/&quot;&gt;Ivy&lt;/a&gt; Dependency Management.&lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;http://www.scala-sbt.org&quot;&gt;SBT&lt;/a&gt; Build Tool, is uses ivy for Dependency Management.&lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;https://gradle.org/&quot;&gt;Gradle&lt;/a&gt; Build Tool and it uses maven for Dependency Management.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Golang seems to have a huge vibrant community of devs working in parallel to build the tool chain.&lt;/p&gt;
 
 &lt;p&gt;According to &lt;a href=&quot;https://github.com/golang/go/wiki/PackageManagementTools&quot;&gt;PackageManagementTools&lt;/a&gt; the official package manager is &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;warning&quot;&gt;Warning:&lt;/h2&gt;
 
-&lt;p&gt;One big bummer is that even when the Go team says that dep is the official package manager, you will notice that the dep page states that:&lt;/p&gt;
+&lt;p&gt;One big bummer is that even when the Go team says that dep is the official dependency manager, you will notice that the dep page states that:&lt;/p&gt;
 
 &lt;p&gt;Dep is a prototype dependency management tool. It requires Go 1.7 or newer to compile.&lt;/p&gt;
 
@@ -34,7 +51,7 @@
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure github.com/pkg/errors@^0.8.0
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><summary type="html">Go Package Management</summary></entry><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</content><summary type="html">Go Package Management and Build Tool</summary></entry><entry><title type="html">0 Golang: Installing Go on Mac OS</title><link href="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html" rel="alternate" type="text/html" title="0 Golang: Installing Go on Mac OS" /><published>2017-02-12T19:26:32-05:00</published><updated>2017-02-12T19:26:32-05:00</updated><id>http://localhost:4000/jekyll/update/2017/02/12/Installing-go</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/12/Installing-go.html">&lt;p&gt;1) Install homebrew following the instructions @&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;2) Run:&lt;/p&gt;
 
