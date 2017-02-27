@@ -9,11 +9,11 @@ categories: golang package management dep
 
 <b>Objective: </b> Determine package manager to be used with go projects and walk through the basics.
 
-According to [PackageManagementTools]({% https://github.com/golang/go/wiki/PackageManagementTools%}) the official package manager is [dep]({% https://github.com/golang/dep %})
+According to [PackageManagementTools](https://github.com/golang/go/wiki/PackageManagementTools) the official package manager is [dep]( https://github.com/golang/dep )
 
 ## Usage
 
-Get the tool via
+Get dep tool via
 
 ```sh
 $ go get -u github.com/golang/dep/...
@@ -26,6 +26,3 @@ $ dep init
 $ dep ensure -update
 ```
 
-{% highlight bash %}
-brew install go
-{% endhighlight %}
