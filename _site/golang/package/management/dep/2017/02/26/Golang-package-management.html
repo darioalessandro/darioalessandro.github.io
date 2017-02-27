@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>3 Golang: Package Management</title>
-  <meta name="description" content="Package Management">
+  <meta name="description" content="Go Package Management">
 
   <link rel="stylesheet" href="/assets/main.css">
   <link rel="canonical" href="http://localhost:4000/golang/package/management/dep/2017/02/26/Golang-package-management.html">
@@ -66,11 +66,21 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="package-management">Package Management</h1>
+    <h1 id="go-package-management">Go Package Management</h1>
 
 <p><b>Objective: </b> Determine package manager to be used with go projects and walk through the basics.</p>
 
-<p>According to <a href="https://github.com/golang/go/wiki/PackageManagementTools">PackageManagementTools</a> the official package manager is <a href="https://github.com/golang/dep">dep</a></p>
+<p>According to <a href="https://github.com/golang/go/wiki/PackageManagementTools">PackageManagementTools</a> the official package manager is <a href="https://github.com/golang/dep">dep</a>.</p>
+
+<h2 id="warning">Warning:</h2>
+
+<p>One big bummer is that even when the Go team says that dep is the official package manager, you will notice that the dep page states that:</p>
+
+<p>Dep is a prototype dependency management tool. It requires Go 1.7 or newer to compile.</p>
+
+<h3 id="dep-is-not-an-official-tool-it-is-not-yet-blessed-by-the-go-team">Dep is NOT an official tool. It is not (yet) blessed by the Go team.</h3>
+
+<p>It IS, however, the consensus effort of most of the Go community, and being integrated into the <code class="highlighter-rouge">go</code> toolchain is the goal.</p>
 
 <h2 id="usage">Usage</h2>
 
