@@ -25,7 +25,7 @@ For Java we have the next:
     <li> <a href="https://gradle.org/">Gradle</a> Build Tool and it uses Maven for Dependency Management.</li>
 </ol>
 
-All the above are mature tools, with great support and different capabilites, I tend to like sbt + ivy because it is not some crappy scripting thing, is a full fledged
+All the above are mature tools, with great support and different capabilities, I tend to like sbt + ivy because it is not some crappy scripting thing, it is a full fledged
 code driven build tool which allows for max flexibility and customization.
 
 ### Go:
