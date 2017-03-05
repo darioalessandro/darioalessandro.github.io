@@ -1,5 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-26T23:56:23-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">3 Golang: Dependency Management</title><link href="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html" rel="alternate" type="text/html" title="3 Golang: Dependency Management" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html">&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-05T17:47:23-05:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">6. Go: Cheatsheet</title><link href="http://localhost:4000/tar/linux/mac/tgz/.tar.gz/2017/03/01/Go-cheatsheet.html" rel="alternate" type="text/html" title="6. Go: Cheatsheet" /><published>2017-03-01T10:00:00-05:00</published><updated>2017-03-01T10:00:00-05:00</updated><id>http://localhost:4000/tar/linux/mac/tgz/.tar.gz/2017/03/01/Go-cheatsheet</id><content type="html" xml:base="http://localhost:4000/tar/linux/mac/tgz/.tar.gz/2017/03/01/Go-cheatsheet.html">&lt;h2 id=&quot;declare-variables-and-constants&quot;&gt;Declare variables and constants&lt;/h2&gt;
+
+&lt;p&gt;Constant&lt;/p&gt;
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3.1416&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><summary type="html">Declare variables and constants</summary></entry><entry><title type="html">5: Untar file</title><link href="http://localhost:4000/tar/linux/mac/tgz/.tar.gz/2017/03/01/untar-document.html" rel="alternate" type="text/html" title="5: Untar file" /><published>2017-03-01T10:00:00-05:00</published><updated>2017-03-01T10:00:00-05:00</updated><id>http://localhost:4000/tar/linux/mac/tgz/.tar.gz/2017/03/01/untar-document</id><content type="html" xml:base="http://localhost:4000/tar/linux/mac/tgz/.tar.gz/2017/03/01/untar-document.html">&lt;p&gt;If Your File Extension is .tar.gz (or .tgz)&lt;/p&gt;
+
+&lt;p&gt;If your tar file is compressed using a gZip compressor, use this command:&lt;/p&gt;
+
+&lt;p&gt;1 tar xvzf file.tar.gz&lt;/p&gt;
+
+&lt;p&gt;The options are pretty straightforward for this:&lt;/p&gt;
+
+&lt;p&gt;x: This tells tar to extract the files.&lt;/p&gt;
+
+&lt;p&gt;v: This option will list all of the files one by one in the archive. The “v” stands for “verbose.”&lt;/p&gt;
+
+&lt;p&gt;z: The z option is very important and tells the tar command to uncompress the file (gzip).&lt;/p&gt;
+
+&lt;p&gt;f: This options tells tar that you are going to give it a file name to work with.&lt;/p&gt;</content><summary type="html">If Your File Extension is .tar.gz (or .tgz)</summary></entry><entry><title type="html">3 Golang: Dependency Management</title><link href="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html" rel="alternate" type="text/html" title="3 Golang: Dependency Management" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html">&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
 
 &lt;p&gt;Determine good options for dependency management tools and walk through the basics.&lt;/p&gt;
 
@@ -18,7 +37,7 @@
     &lt;li&gt; &lt;a href=&quot;https://gradle.org/&quot;&gt;Gradle&lt;/a&gt; Build Tool and it uses Maven for Dependency Management.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;All the above are mature tools, with great support and different capabilites, I tend to like sbt + ivy because it is not some crappy scripting thing, is a full fledged
+&lt;p&gt;All the above are mature tools, with great support and different capabilities, I tend to like sbt + ivy because it is not some crappy scripting thing, it is a full fledged
 code driven build tool which allows for max flexibility and customization.&lt;/p&gt;
 
 &lt;h3 id=&quot;go&quot;&gt;Go:&lt;/h3&gt;
