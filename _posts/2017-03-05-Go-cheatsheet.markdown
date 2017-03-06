@@ -273,7 +273,7 @@ At this juncture, I understand that the intention of such a lame keyword is to g
 function which will be called before the current function returns, might be used for cleanup, but if you like go you are
 already dirty, forever.
 
-# Pass by Value vs Reference
+## Pass by Value vs Reference
 
 For the longest time, having access to memory has been by far, one of the biggest attack vector to C programs.
 
