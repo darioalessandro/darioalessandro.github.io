@@ -207,14 +207,16 @@ delete(mapOfAges,"Werfaefgaerg")
 len(map)
 ```
 
-# Functions
+## Functions
+
+# Classic Functions
 
 ** Note: Return is required (because Go sucks)
 
 ```go
-func <name>(<params>) <returntype> {
+func <name>(<params>) <returnType> {
     <body>
-    return <return value>
+    return <returnValue>
 }
 ```
 Example:
@@ -228,3 +230,100 @@ func addValues(numbers [] float64) float64 {
 	return res //so damn old style
 }
 ```
+
+# Return 2 values for function
+
+```go
+func generateDeterministicRandomPair() (float64,float64) {
+	return rand.Float64(), rand.Float64()
+}
+```
+
+# Variable number of arguments
+
+```go
+func addValues2(args...float64) float64 {
+	var res = 0.0
+	for _,value := range  args {
+		res = res + value
+	}
+	return res;
+}
+```
+
+## Defer
+
+or as I call it, the equivalent of C's old good "goto" for Gophers:
+
+```go
+func main() {
+    fmt.Println("Go is")
+    defer fmt.Println("Very")
+    fmt.Println("Stupid")
+}
+```
+
+Prints:
+```go
+Go is
+Stupid
+Very
+```
+At this juncture, I understand that the intention of such a lame keyword is to give a chance to the "gopher" to define a
+function which will be called before the current function returns, might be used for cleanup, but if you like go you are
+already dirty, forever.
+
+# Pass by Value vs Reference
+
+For the longest time, having access to memory has been by far, one of the biggest attack vector to C programs.
+
+In total disregard of this, Go devs bring back the hability to point to garbage and break things around by allowing low
+level access to memory (fail).
+
+# Pass by Value
+
+```go
+func main() {
+    x := 0
+    changeVal(x)
+    fmt.Println(x) // 0
+}
+
+func changeVal(x int) {
+    x = 2
+}
+```
+
+# Pass by Reference
+
+```go
+func main() {
+    x := 0
+    changeVal(&x)
+    fmt.Println(x) // 2
+}
+
+func changeVal(x *int) {
+    *x = 2
+}
+```
+
+# Pointer arithmetic.
+
+Raw access to pointers allows developers to create a total new set of mistakes and open security holes in their web
+applications having to do with pointer arithmetic.
+
+Remember Heartbleed? that was the result of an excessive usage of pointer arithmetic, that is because using it once it's
+one too many.
+
+Not convinced, look at this [Article](https://www.theregister.co.uk/2014/04/09/heartbleed_explained/) by Chris Williams.
+
+By default, go disables pointer arithmetic but anyone can just import "unsafe" and have fun with your code.
+
+
+
+
+
+
+
+

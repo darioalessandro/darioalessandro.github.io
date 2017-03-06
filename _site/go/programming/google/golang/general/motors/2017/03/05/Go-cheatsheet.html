@@ -267,13 +267,15 @@ Contains a length of 3 and has a capacity of 5 elements.</p>
 </span></code></pre>
 </div>
 
-<h1 id="functions">Functions</h1>
+<h2 id="functions">Functions</h2>
+
+<h1 id="classic-functions">Classic Functions</h1>
 
 <p>** Note: Return is required (because Go sucks)</p>
 
-<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">params</span><span class="o">&gt;</span><span class="p">)</span><span class="x"> </span><span class="o">&lt;</span><span class="n">returntype</span><span class="o">&gt;</span><span class="x"> </span><span class="p">{</span><span class="x">
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">params</span><span class="o">&gt;</span><span class="p">)</span><span class="x"> </span><span class="o">&lt;</span><span class="n">returnType</span><span class="o">&gt;</span><span class="x"> </span><span class="p">{</span><span class="x">
     </span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span><span class="x">
-    </span><span class="k">return</span><span class="x"> </span><span class="o">&lt;</span><span class="k">return</span><span class="x"> </span><span class="n">value</span><span class="o">&gt;</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="o">&lt;</span><span class="n">returnValue</span><span class="o">&gt;</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 </div>
@@ -288,6 +290,96 @@ Contains a length of 3 and has a capacity of 5 elements.</p>
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 </div>
+
+<h1 id="return-2-values-for-function">Return 2 values for function</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">generateDeterministicRandomPair</span><span class="p">()</span><span class="x"> </span><span class="p">(</span><span class="kt">float64</span><span class="p">,</span><span class="kt">float64</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">rand</span><span class="o">.</span><span class="n">Float64</span><span class="p">(),</span><span class="x"> </span><span class="n">rand</span><span class="o">.</span><span class="n">Float64</span><span class="p">()</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="variable-number-of-arguments">Variable number of arguments</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">addValues2</span><span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="kt">float64</span><span class="p">)</span><span class="x"> </span><span class="kt">float64</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">var</span><span class="x"> </span><span class="n">res</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">0.0</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">_</span><span class="p">,</span><span class="n">value</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">range</span><span class="x">  </span><span class="n">args</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">res</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">res</span><span class="x"> </span><span class="o">+</span><span class="x"> </span><span class="n">value</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">res</span><span class="p">;</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h2 id="defer">Defer</h2>
+
+<p>or as I call it, the equivalent of C’s old good “goto” for Gophers:</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Go is"</span><span class="p">)</span><span class="x">
+    </span><span class="k">defer</span><span class="x"> </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Very"</span><span class="p">)</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Stupid"</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<p>Prints:</p>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">Go</span><span class="x"> </span><span class="n">is</span><span class="x">
+</span><span class="n">Stupid</span><span class="x">
+</span><span class="n">Very</span><span class="x">
+</span></code></pre>
+</div>
+<p>At this juncture, I understand that the intention of such a lame keyword is to give a chance to the “gopher” to define a
+function which will be called before the current function returns, might be used for cleanup, but if you like go you are
+already dirty, forever.</p>
+
+<h1 id="pass-by-value-vs-reference">Pass by Value vs Reference</h1>
+
+<p>For the longest time, having access to memory has been by far, one of the biggest attack vector to C programs.</p>
+
+<p>In total disregard of this, Go devs bring back the hability to point to garbage and break things around by allowing low
+level access to memory (fail).</p>
+
+<h1 id="pass-by-value">Pass by Value</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">x</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+    </span><span class="n">changeVal</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="x"> </span><span class="c">// 0</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">changeVal</span><span class="p">(</span><span class="n">x</span><span class="x"> </span><span class="kt">int</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">x</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">2</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="pass-by-reference">Pass by Reference</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">x</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="x">
+    </span><span class="n">changeVal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">)</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="x"> </span><span class="c">// 2</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">changeVal</span><span class="p">(</span><span class="n">x</span><span class="x"> </span><span class="o">*</span><span class="kt">int</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="o">*</span><span class="n">x</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">2</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="pointer-arithmetic">Pointer arithmetic.</h1>
+
+<p>Raw access to pointers allows developers to create a total new set of mistakes and open security holes in their web
+applications having to do with pointer arithmetic.</p>
+
+<p>Remember Heartbleed? that was the result of an excessive usage of pointer arithmetic, that is because using it once it’s
+one too many.</p>
+
+<p>Not convinced, look at this <a href="https://www.theregister.co.uk/2014/04/09/heartbleed_explained/">Article</a> by Chris Williams.</p>
+
+<p>By default, go disables pointer arithmetic but anyone can just import “unsafe” and have fun with your code.</p>
+
 
   </div>
 
