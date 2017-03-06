@@ -308,7 +308,7 @@ func changeVal(x *int) {
 }
 ```
 
-# Pointer arithmetic.
+# Note on pointer arithmetic.
 
 Raw access to pointers allows developers to create a total new set of mistakes and open security holes in their web
 applications having to do with pointer arithmetic.
@@ -320,10 +320,90 @@ Not convinced, look at this [Article](https://www.theregister.co.uk/2014/04/09/h
 
 By default, go disables pointer arithmetic but anyone can just import "unsafe" and have fun with your code.
 
+## Good old structs
+
+Allows users to define custom data structures.
+
+# Declaration
+
+```go
+type Human struct {
+    name string
+    age int
+}
+```
+
+# Initialization
+
+```go
+func main() {
+    h := Human{name : "Roliaserasf", age: 100}
+}
+```
+
+# Accessing properties
+```go
+fmt.Human(h.name, "'s age is", h.age) //Roliaserasf 's age is 100
+```
+
+# Attaching functions to structs:
+
+```go
+func (h * Human) sayHi() {
+    fmt.Println(h.name,"says hi!")
+}
+```
+
+## Interfaces
+
+Consider an interface with the form:
+```go
+type Mammal interface {
+    dailyAverageMaternalMilkConsumption() float64
+}
+```
+Let's define a couple of Mammals and have them implement "mlOfMilkNeeded"
+
+```go
+type Human struct {
+	name string
+	age int
+}
+
+type Whale struct {
+	name string
+	age int
+}
+```
+
+```go
+func (w Whale) dailyAverageMaternalMilkConsumption() float64 {
+	switch {
+		case w.age <= 2 : return 400000 //Yes, 400 L
+		default: return 0
+	}
+}
+
+func (h Human) dailyAverageMaternalMilkConsumption() float64 {
+	switch {
+		case h.age <= 2 : return 500
+		default: return 0
+	}
+}
+```
+
+From now on, you can use Human and Whale like this:
 
 
+```go
+func getMills(m Mammal) float64 {
+	return m.dailyAverageMaternalMilkConsumption()
+}
 
+danny := Whale{name:"Danny", age:1}
+fmt.Println(getMills(danny)) //400 000 ml
 
+edgar := Human{name:"Edgar", age:1}
+fmt.Println(getMills(edgar)) //500 ml
 
-
-
+```

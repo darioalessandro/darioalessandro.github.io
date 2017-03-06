@@ -368,7 +368,7 @@ level access to memory (fail).</p>
 </span></code></pre>
 </div>
 
-<h1 id="pointer-arithmetic">Pointer arithmetic.</h1>
+<h1 id="note-on-pointer-arithmetic">Note on pointer arithmetic.</h1>
 
 <p>Raw access to pointers allows developers to create a total new set of mistakes and open security holes in their web
 applications having to do with pointer arithmetic.</p>
@@ -380,6 +380,92 @@ one too many.</p>
 
 <p>By default, go disables pointer arithmetic but anyone can just import “unsafe” and have fun with your code.</p>
 
+<h2 id="good-old-structs">Good old structs</h2>
+
+<p>Allows users to define custom data structures.</p>
+
+<h1 id="declaration">Declaration</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Human</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">name</span><span class="x"> </span><span class="kt">string</span><span class="x">
+    </span><span class="n">age</span><span class="x"> </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="initialization">Initialization</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">h</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">Human</span><span class="p">{</span><span class="n">name</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="s">"Roliaserasf"</span><span class="p">,</span><span class="x"> </span><span class="n">age</span><span class="o">:</span><span class="x"> </span><span class="m">100</span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="accessing-properties">Accessing properties</h1>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Human</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="x"> </span><span class="s">"'s age is"</span><span class="p">,</span><span class="x"> </span><span class="n">h</span><span class="o">.</span><span class="n">age</span><span class="p">)</span><span class="x"> </span><span class="c">//Roliaserasf 's age is 100</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="attaching-functions-to-structs">Attaching functions to structs:</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">h</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="n">Human</span><span class="p">)</span><span class="x"> </span><span class="n">sayHi</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s">"says hi!"</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h2 id="interfaces">Interfaces</h2>
+
+<p>Consider an interface with the form:</p>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Mammal</span><span class="x"> </span><span class="k">interface</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">dailyAverageMaternalMilkConsumption</span><span class="p">()</span><span class="x"> </span><span class="kt">float64</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+<p>Let’s define a couple of Mammals and have them implement “mlOfMilkNeeded”</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">type</span><span class="x"> </span><span class="n">Human</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">name</span><span class="x"> </span><span class="kt">string</span><span class="x">
+	</span><span class="n">age</span><span class="x"> </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">type</span><span class="x"> </span><span class="n">Whale</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">name</span><span class="x"> </span><span class="kt">string</span><span class="x">
+	</span><span class="n">age</span><span class="x"> </span><span class="kt">int</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">w</span><span class="x"> </span><span class="n">Whale</span><span class="p">)</span><span class="x"> </span><span class="n">dailyAverageMaternalMilkConsumption</span><span class="p">()</span><span class="x"> </span><span class="kt">float64</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">switch</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="k">case</span><span class="x"> </span><span class="n">w</span><span class="o">.</span><span class="n">age</span><span class="x"> </span><span class="o">&lt;=</span><span class="x"> </span><span class="m">2</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="k">return</span><span class="x"> </span><span class="m">400000</span><span class="x"> </span><span class="c">//Yes, 400 L</span><span class="x">
+		</span><span class="k">default</span><span class="o">:</span><span class="x"> </span><span class="k">return</span><span class="x"> </span><span class="m">0</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">h</span><span class="x"> </span><span class="n">Human</span><span class="p">)</span><span class="x"> </span><span class="n">dailyAverageMaternalMilkConsumption</span><span class="p">()</span><span class="x"> </span><span class="kt">float64</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">switch</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="k">case</span><span class="x"> </span><span class="n">h</span><span class="o">.</span><span class="n">age</span><span class="x"> </span><span class="o">&lt;=</span><span class="x"> </span><span class="m">2</span><span class="x"> </span><span class="o">:</span><span class="x"> </span><span class="k">return</span><span class="x"> </span><span class="m">500</span><span class="x">
+		</span><span class="k">default</span><span class="o">:</span><span class="x"> </span><span class="k">return</span><span class="x"> </span><span class="m">0</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<p>From now on, you can use Human and Whale like this:</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">getMills</span><span class="p">(</span><span class="n">m</span><span class="x"> </span><span class="n">Mammal</span><span class="p">)</span><span class="x"> </span><span class="kt">float64</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">m</span><span class="o">.</span><span class="n">dailyAverageMaternalMilkConsumption</span><span class="p">()</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="n">danny</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">Whale</span><span class="p">{</span><span class="n">name</span><span class="o">:</span><span class="s">"Danny"</span><span class="p">,</span><span class="x"> </span><span class="n">age</span><span class="o">:</span><span class="m">1</span><span class="p">}</span><span class="x">
+</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">getMills</span><span class="p">(</span><span class="n">danny</span><span class="p">))</span><span class="x"> </span><span class="c">//400 000 ml</span><span class="x">
+
+</span><span class="n">edgar</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">Human</span><span class="p">{</span><span class="n">name</span><span class="o">:</span><span class="s">"Edgar"</span><span class="p">,</span><span class="x"> </span><span class="n">age</span><span class="o">:</span><span class="m">1</span><span class="p">}</span><span class="x">
+</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">getMills</span><span class="p">(</span><span class="n">edgar</span><span class="p">))</span><span class="x"> </span><span class="c">//500 ml</span><span class="x">
+
+</span></code></pre>
+</div>
 
   </div>
 
