@@ -362,7 +362,7 @@ type Mammal interface {
     dailyAverageMaternalMilkConsumption() float64
 }
 ```
-Let's define a couple of Mammals and have them implement "mlOfMilkNeeded"
+Let's define a couple of Mammals and have them implement "dailyAverageMaternalMilkConsumption"
 
 ```go
 type Human struct {
@@ -394,7 +394,6 @@ func (h Human) dailyAverageMaternalMilkConsumption() float64 {
 
 From now on, you can use Human and Whale like this:
 
-
 ```go
 func getMills(m Mammal) float64 {
 	return m.dailyAverageMaternalMilkConsumption()
@@ -407,3 +406,15 @@ edgar := Human{name:"Edgar", age:1}
 fmt.Println(getMills(edgar)) //500 ml
 
 ```
+
+## Strings
+(More to come)
+
+## File IO
+(More to come)
+
+## Goroutines
+(More to come)
+
+## Logs
+(More to come)
