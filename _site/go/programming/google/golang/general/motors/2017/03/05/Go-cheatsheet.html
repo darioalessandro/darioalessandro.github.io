@@ -240,6 +240,55 @@ Contains a length of 3 and has a capacity of 5 elements.</p>
 </span></code></pre>
 </div>
 
+<h2 id="maps">Maps</h2>
+
+<h1 id="create-2">Create</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">mapOfAges</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="nb">make</span><span class="p">(</span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="x"> </span><span class="kt">int</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="set-keys-and-values">Set keys and values</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">mapOfAges</span><span class="p">[</span><span class="s">"Werfaefgaerg"</span><span class="p">]</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">23</span><span class="x">
+</span><span class="n">mapOfAges</span><span class="p">[</span><span class="s">"Bismarerwerer"</span><span class="p">]</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">35</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="delete-keys">Delete keys</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="nb">delete</span><span class="p">(</span><span class="n">mapOfAges</span><span class="p">,</span><span class="s">"Werfaefgaerg"</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="count-keys">Count keys</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="nb">len</span><span class="p">(</span><span class="k">map</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="functions">Functions</h1>
+
+<p>** Note: Return is required (because Go sucks)</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">params</span><span class="o">&gt;</span><span class="p">)</span><span class="x"> </span><span class="o">&lt;</span><span class="n">returntype</span><span class="o">&gt;</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span><span class="x">
+    </span><span class="k">return</span><span class="x"> </span><span class="o">&lt;</span><span class="k">return</span><span class="x"> </span><span class="n">value</span><span class="o">&gt;</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+<p>Example:</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">addValues</span><span class="p">(</span><span class="n">numbers</span><span class="x"> </span><span class="p">[]</span><span class="x"> </span><span class="kt">float64</span><span class="p">)</span><span class="x"> </span><span class="kt">float64</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">var</span><span class="x"> </span><span class="n">res</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">0.0</span><span class="p">;</span><span class="x"> </span><span class="c">//force type system to use float</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">_</span><span class="p">,</span><span class="n">value</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="k">range</span><span class="x"> </span><span class="n">numbers</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">res</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">res</span><span class="x"> </span><span class="o">+</span><span class="x"> </span><span class="n">value</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">res</span><span class="x"> </span><span class="c">//so damn old style</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
   </div>
 
   

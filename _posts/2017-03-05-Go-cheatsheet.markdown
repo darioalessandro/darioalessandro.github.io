@@ -179,3 +179,52 @@ fmt.Println(numberOfCopiedElements) //5 because b has capacity of 5
 fmt.Println(b) //[0 1 2 3 4]
 
 ```
+
+## Maps
+
+# Create
+
+```go
+mapOfAges := make(map[string] int)
+```
+
+# Set keys and values
+
+```go
+mapOfAges["Werfaefgaerg"] = 23
+mapOfAges["Bismarerwerer"] = 35
+```
+
+# Delete keys
+
+```go
+delete(mapOfAges,"Werfaefgaerg")
+```
+
+# Count keys
+
+```go
+len(map)
+```
+
+# Functions
+
+** Note: Return is required (because Go sucks)
+
+```go
+func <name>(<params>) <returntype> {
+    <body>
+    return <return value>
+}
+```
+Example:
+
+```go
+func addValues(numbers [] float64) float64 {
+	var res = 0.0; //force type system to use float
+	for _,value := range numbers {
+		res = res + value
+	}
+	return res //so damn old style
+}
+```
