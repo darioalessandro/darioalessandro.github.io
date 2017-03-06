@@ -408,13 +408,173 @@ fmt.Println(getMills(edgar)) //500 ml
 ```
 
 ## Strings
-(More to come)
+
+```go
+import ("strings"
+        "fmt"
+        "sort"
+        "strconv"
+        )
+```
+
+
+# Creation:
+```go
+sampString := "Hello World"
+```
+
+#Contains
+
+```go
+fmt.Println(strings.Contains(sampString,"lo")) // true
+```
+
+# Index
+
+```go
+fmt.Println(strings.Contains(sampString,"lo")) // 3
+```
+# Count
+
+```go
+fmt.Println(strings.Count(sampString,"l")) // 3
+```
+
+# Replace
+
+```go
+fmt.Println(strings.Replace(sampString,"l", "x", 2)) // Hexxo World
+```
+
+# Split
+
+```go
+csvString := "1,2,3,4,5,6"
+fmt.Println(strings.Split(csvString,",")) // [1,2,3,4,5,6]
+```
+
+# Sort
+
+```go
+listOfLetters := []string{"c","a","b"}
+sort.Strings(listOfLetters) // [a,b,c]
+```
+# Join
+
+```go
+listOfNums := strings.Join([]string{"3","2","1"},", ") //"3, 2, 1, "
+```
+
+# ParseInt and ParseFloat
+
+```go
+newInt, errInt := strconv.ParseInt("30",0,64)
+newFloat, errInt := strconv.ParseFloat("31",64)
+```
 
 ## File IO
-(More to come)
+
+```go
+import ("os"
+        "fmt"
+        "log"
+        "io/ioutil")
+```
+
+# Create file
+
+```go
+file, err:= os.Create("sample.txt")
+if err != nil {
+    log.Fatal(err)
+}
+```
+
+# Write to file
+
+```go
+file.WriteString("This is some random text")
+```
+
+# Close file
+```go
+file.Close()
+```
+
+# Read file
+```go
+stream, err := ioutil.ReadFile("samp.txt")
+if err != nil {
+    log.Fatal(err)
+}
+readString := string(stream)
+```
 
 ## Goroutines
-(More to come)
+```go
+import ("fmt"
+        "time")
+```
 
-## Logs
-(More to come)
+```go
+func count(id int) {
+    for i := 0; i <10; i++) {
+        fmt.Println(id,":",i)
+        time.Sleep(time.Millisecond * 1000)
+    }
+}
+
+func main() {
+    for i := 0; i <10; i++) {
+        go count(i)
+    }
+    time.Sleep(time.Millisecond * 11000)
+}
+```
+
+## Channels
+
+```go
+import ("fmt"
+        "time"
+        "strconv")
+
+var pizzaNum = 0
+var pizzaName = ""
+
+func makeDough(stringChan chan string) {
+    pizzaNum = pizzaNum + 1
+    pizzaName = "Pizza #" + strconv.Itoa(pizzaNum)
+    fmt.Println("Make Dough and Send for Sauce")
+    stringChan <- pizzaName
+    time.Sleep(time.Millisecond * 10)
+}
+
+
+func addSauce(stringChan chan string) {
+    pizza := <- stringChan
+    fmt.Println("Add Sauce and Send", pizza, "for toppings")
+    stringChan <- pizzaName
+    time.Sleep(time.Millisecond * 10)
+}
+
+func addToppings(stringChan chan string) {
+    pizza := <- stringChan
+    fmt.Println("Add Toppings to", pizza, "and ship")
+    time.Sleep(time.Millisecond * 10)
+}
+
+func main() {
+    stringChan := make(chan string)
+   for i := 0; i < 3; i++ {
+        go makeDough(stringChan)
+        go addSauce(stringChan)
+        go addToppings(stringChan)
+        time.Sleep(time.Millisecond * 5000)
+   }
+}
+
+```
+
+## Concurrency and synchronization
+(TBD)

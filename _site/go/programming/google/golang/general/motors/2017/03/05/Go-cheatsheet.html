@@ -468,16 +468,175 @@ one too many.</p>
 </div>
 
 <h2 id="strings">Strings</h2>
-<p>(More to come)</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="s">"strings"</span><span class="x">
+        </span><span class="s">"fmt"</span><span class="x">
+        </span><span class="s">"sort"</span><span class="x">
+        </span><span class="s">"strconv"</span><span class="x">
+        </span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="creation">Creation:</h1>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">sampString</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"Hello World"</span><span class="x">
+</span></code></pre>
+</div>
+
+<p>#Contains</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">sampString</span><span class="p">,</span><span class="s">"lo"</span><span class="p">))</span><span class="x"> </span><span class="c">// true</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="index">Index</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">sampString</span><span class="p">,</span><span class="s">"lo"</span><span class="p">))</span><span class="x"> </span><span class="c">// 3</span><span class="x">
+</span></code></pre>
+</div>
+<h1 id="count">Count</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">Count</span><span class="p">(</span><span class="n">sampString</span><span class="p">,</span><span class="s">"l"</span><span class="p">))</span><span class="x"> </span><span class="c">// 3</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="replace">Replace</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">Replace</span><span class="p">(</span><span class="n">sampString</span><span class="p">,</span><span class="s">"l"</span><span class="p">,</span><span class="x"> </span><span class="s">"x"</span><span class="p">,</span><span class="x"> </span><span class="m">2</span><span class="p">))</span><span class="x"> </span><span class="c">// Hexxo World</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="split">Split</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">csvString</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"1,2,3,4,5,6"</span><span class="x">
+</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">Split</span><span class="p">(</span><span class="n">csvString</span><span class="p">,</span><span class="s">","</span><span class="p">))</span><span class="x"> </span><span class="c">// [1,2,3,4,5,6]</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="sort">Sort</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">listOfLetters</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"c"</span><span class="p">,</span><span class="s">"a"</span><span class="p">,</span><span class="s">"b"</span><span class="p">}</span><span class="x">
+</span><span class="n">sort</span><span class="o">.</span><span class="n">Strings</span><span class="p">(</span><span class="n">listOfLetters</span><span class="p">)</span><span class="x"> </span><span class="c">// [a,b,c]</span><span class="x">
+</span></code></pre>
+</div>
+<h1 id="join">Join</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">listOfNums</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">"3"</span><span class="p">,</span><span class="s">"2"</span><span class="p">,</span><span class="s">"1"</span><span class="p">},</span><span class="s">", "</span><span class="p">)</span><span class="x"> </span><span class="c">//"3, 2, 1, "</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="parseint-and-parsefloat">ParseInt and ParseFloat</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">newInt</span><span class="p">,</span><span class="x"> </span><span class="n">errInt</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">strconv</span><span class="o">.</span><span class="n">ParseInt</span><span class="p">(</span><span class="s">"30"</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">64</span><span class="p">)</span><span class="x">
+</span><span class="n">newFloat</span><span class="p">,</span><span class="x"> </span><span class="n">errInt</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">strconv</span><span class="o">.</span><span class="n">ParseFloat</span><span class="p">(</span><span class="s">"31"</span><span class="p">,</span><span class="m">64</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
 
 <h2 id="file-io">File IO</h2>
-<p>(More to come)</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="s">"os"</span><span class="x">
+        </span><span class="s">"fmt"</span><span class="x">
+        </span><span class="s">"log"</span><span class="x">
+        </span><span class="s">"io/ioutil"</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="create-file">Create file</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">file</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="o">:=</span><span class="x"> </span><span class="n">os</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="s">"sample.txt"</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">log</span><span class="o">.</span><span class="n">Fatal</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="write-to-file">Write to file</h1>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">file</span><span class="o">.</span><span class="n">WriteString</span><span class="p">(</span><span class="s">"This is some random text"</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="close-file">Close file</h1>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">file</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span><span class="x">
+</span></code></pre>
+</div>
+
+<h1 id="read-file">Read file</h1>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">stream</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ioutil</span><span class="o">.</span><span class="n">ReadFile</span><span class="p">(</span><span class="s">"samp.txt"</span><span class="p">)</span><span class="x">
+</span><span class="k">if</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">nil</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">log</span><span class="o">.</span><span class="n">Fatal</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span><span class="n">readString</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="kt">string</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
 
 <h2 id="goroutines">Goroutines</h2>
-<p>(More to come)</p>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="s">"fmt"</span><span class="x">
+        </span><span class="s">"time"</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
 
-<h2 id="logs">Logs</h2>
-<p>(More to come)</p>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">count</span><span class="p">(</span><span class="n">id</span><span class="x"> </span><span class="kt">int</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="s">":"</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="x">
+        </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">1000</span><span class="p">)</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="k">go</span><span class="x"> </span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="x">
+    </span><span class="p">}</span><span class="x">
+    </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">11000</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<h2 id="channels">Channels</h2>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="s">"fmt"</span><span class="x">
+        </span><span class="s">"time"</span><span class="x">
+        </span><span class="s">"strconv"</span><span class="p">)</span><span class="x">
+
+</span><span class="k">var</span><span class="x"> </span><span class="n">pizzaNum</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="m">0</span><span class="x">
+</span><span class="k">var</span><span class="x"> </span><span class="n">pizzaName</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">""</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">makeDough</span><span class="p">(</span><span class="n">stringChan</span><span class="x"> </span><span class="k">chan</span><span class="x"> </span><span class="kt">string</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">pizzaNum</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">pizzaNum</span><span class="x"> </span><span class="o">+</span><span class="x"> </span><span class="m">1</span><span class="x">
+    </span><span class="n">pizzaName</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="s">"Pizza #"</span><span class="x"> </span><span class="o">+</span><span class="x"> </span><span class="n">strconv</span><span class="o">.</span><span class="n">Itoa</span><span class="p">(</span><span class="n">pizzaNum</span><span class="p">)</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Make Dough and Send for Sauce"</span><span class="p">)</span><span class="x">
+    </span><span class="n">stringChan</span><span class="x"> </span><span class="o">&lt;-</span><span class="x"> </span><span class="n">pizzaName</span><span class="x">
+    </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">10</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">addSauce</span><span class="p">(</span><span class="n">stringChan</span><span class="x"> </span><span class="k">chan</span><span class="x"> </span><span class="kt">string</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">pizza</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&lt;-</span><span class="x"> </span><span class="n">stringChan</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Add Sauce and Send"</span><span class="p">,</span><span class="x"> </span><span class="n">pizza</span><span class="p">,</span><span class="x"> </span><span class="s">"for toppings"</span><span class="p">)</span><span class="x">
+    </span><span class="n">stringChan</span><span class="x"> </span><span class="o">&lt;-</span><span class="x"> </span><span class="n">pizzaName</span><span class="x">
+    </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">10</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">addToppings</span><span class="p">(</span><span class="n">stringChan</span><span class="x"> </span><span class="k">chan</span><span class="x"> </span><span class="kt">string</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">pizza</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&lt;-</span><span class="x"> </span><span class="n">stringChan</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Add Toppings to"</span><span class="p">,</span><span class="x"> </span><span class="n">pizza</span><span class="p">,</span><span class="x"> </span><span class="s">"and ship"</span><span class="p">)</span><span class="x">
+    </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">10</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">stringChan</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="nb">make</span><span class="p">(</span><span class="k">chan</span><span class="x"> </span><span class="kt">string</span><span class="p">)</span><span class="x">
+   </span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="x"> </span><span class="m">3</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="x"> </span><span class="p">{</span><span class="x">
+        </span><span class="k">go</span><span class="x"> </span><span class="n">makeDough</span><span class="p">(</span><span class="n">stringChan</span><span class="p">)</span><span class="x">
+        </span><span class="k">go</span><span class="x"> </span><span class="n">addSauce</span><span class="p">(</span><span class="n">stringChan</span><span class="p">)</span><span class="x">
+        </span><span class="k">go</span><span class="x"> </span><span class="n">addToppings</span><span class="p">(</span><span class="n">stringChan</span><span class="p">)</span><span class="x">
+        </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">5000</span><span class="p">)</span><span class="x">
+   </span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre>
+</div>
+
+<h2 id="concurrency-and-synchronization">Concurrency and synchronization</h2>
+<p>(TBD)</p>
 
   </div>
 
