@@ -569,24 +569,37 @@ one too many.</p>
 </span></code></pre>
 </div>
 
+<h2 id="concurrency-vs-parallelism">Concurrency vs parallelism</h2>
+
+<p><img src="http://localhost:4000/assets/concurrencyVsParallelism.png" alt="Concurrency vs parallelism" /></p>
+<blockquote>Figure 1: Taken from William Kennedy. “Go in Action.”  </blockquote>
+
 <h2 id="goroutines">Goroutines</h2>
-<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="s">"fmt"</span><span class="x">
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="s">"sync"</span><span class="x">
+        </span><span class="s">"fmt"</span><span class="x">
+        </span><span class="s">"runtime"</span><span class="x">
         </span><span class="s">"time"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 </div>
 
-<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">func</span><span class="x"> </span><span class="n">count</span><span class="p">(</span><span class="n">id</span><span class="x"> </span><span class="kt">int</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="s">":"</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="x">
-        </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">1000</span><span class="p">)</span><span class="x">
-    </span><span class="p">}</span><span class="x">
-</span><span class="p">}</span><span class="x">
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">var</span><span class="x"> </span><span class="n">wg</span><span class="x"> </span><span class="n">sync</span><span class="o">.</span><span class="n">WaitGroup</span><span class="x">
 
 </span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
-        </span><span class="k">go</span><span class="x"> </span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="x">
-    </span><span class="p">}</span><span class="x">
-    </span><span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="m">11000</span><span class="p">)</span><span class="x">
+
+	</span><span class="n">wg</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="k">go</span><span class="x"> </span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Waiting To Finish"</span><span class="p">)</span><span class="x">
+	</span><span class="n">wg</span><span class="o">.</span><span class="n">Wait</span><span class="p">()</span><span class="x">
+
+</span><span class="p">}</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">count</span><span class="p">(</span><span class="n">id</span><span class="x"> </span><span class="kt">int</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">defer</span><span class="x"> </span><span class="n">wg</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span><span class="x">
+	</span><span class="k">for</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="m">0</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="x"> </span><span class="o">&lt;</span><span class="m">10</span><span class="p">;</span><span class="x"> </span><span class="n">i</span><span class="o">++</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="s">":"</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="x">
+	</span><span class="p">}</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 </div>

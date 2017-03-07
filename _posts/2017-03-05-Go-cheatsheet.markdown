@@ -510,25 +510,38 @@ if err != nil {
 readString := string(stream)
 ```
 
+## Concurrency vs parallelism
+
+![Concurrency vs parallelism]({{ site.url }}/assets/concurrencyVsParallelism.png)
+<blockquote>Figure 1: Taken from William Kennedy. “Go in Action.”  </blockquote>
+
 ## Goroutines
 ```go
-import ("fmt"
+import ("sync"
+        "fmt"
+        "runtime"
         "time")
 ```
 
 ```go
-func count(id int) {
-    for i := 0; i <10; i++) {
-        fmt.Println(id,":",i)
-        time.Sleep(time.Millisecond * 1000)
-    }
-}
+var wg sync.WaitGroup
 
 func main() {
-    for i := 0; i <10; i++) {
-        go count(i)
-    }
-    time.Sleep(time.Millisecond * 11000)
+
+	wg.Add(10)
+	for i := 0; i <10; i++ {
+		go count(i)
+	}
+	fmt.Println("Waiting To Finish")
+	wg.Wait()
+
+}
+
+func count(id int) {
+	defer wg.Done()
+	for i := 0; i <10; i++ {
+		fmt.Println(id,":",i)
+	}
 }
 ```
 
