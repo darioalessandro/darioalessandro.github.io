@@ -651,6 +651,20 @@ one too many.</p>
 <h2 id="concurrency-and-synchronization">Concurrency and synchronization</h2>
 <p>(TBD)</p>
 
+<h2 id="reading-arguments">Reading arguments</h2>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">env</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">flag</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="p">,</span><span class="x"> </span><span class="o">&lt;</span><span class="k">default</span><span class="x"> </span><span class="n">value</span><span class="o">&gt;</span><span class="p">,</span><span class="x"> </span><span class="o">&lt;</span><span class="n">description</span><span class="o">&gt;</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+<p>Example:</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="n">env</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">flag</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s">"env"</span><span class="p">,</span><span class="x"> </span><span class="s">"prod"</span><span class="p">,</span><span class="x"> </span><span class="s">"Environment"</span><span class="p">)</span><span class="x">
+	</span><span class="n">flag</span><span class="o">.</span><span class="n">Parse</span><span class="p">()</span><span class="x">
+	</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"env:"</span><span class="p">,</span><span class="x"> </span><span class="o">*</span><span class="n">env</span><span class="p">)</span><span class="x">
+</span></code></pre>
+</div>
+
+
   </div>
 
   

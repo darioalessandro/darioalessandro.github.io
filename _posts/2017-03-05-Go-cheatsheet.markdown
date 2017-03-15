@@ -591,3 +591,17 @@ func main() {
 
 ## Concurrency and synchronization
 (TBD)
+
+## Reading arguments
+
+```go
+env := flag.String(<key>, <default value>, <description>)
+```
+Example:
+
+```go
+env := flag.String("env", "prod", "Environment")
+	flag.Parse()
+	fmt.Println("env:", *env)
+```
+
