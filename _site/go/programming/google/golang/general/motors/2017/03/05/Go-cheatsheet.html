@@ -664,6 +664,35 @@ one too many.</p>
 </span></code></pre>
 </div>
 
+<h2 id="creating-a-test">Creating a test.</h2>
+
+<p>Main command.</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">go</span><span class="x"> </span><span class="n">test</span><span class="x">
+</span></code></pre>
+</div>
+
+<p>No need to create an special package, in order to create a test file, just name it:</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="o">*</span><span class="n">_test</span><span class="o">.</span><span class="k">go</span><span class="x">
+</span></code></pre>
+</div>
+
+<p>Example: main_test.go</p>
+
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+
+</span><span class="k">import</span><span class="x"> </span><span class="s">"testing"</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">TestTruth</span><span class="p">(</span><span class="n">t</span><span class="x"> </span><span class="o">*</span><span class="x"> </span><span class="n">testing</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">if</span><span class="x"> </span><span class="no">true</span><span class="x"> </span><span class="o">!=</span><span class="x"> </span><span class="no">true</span><span class="x"> </span><span class="p">{</span><span class="x">
+		</span><span class="n">t</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="s">"everything I know is wrong."</span><span class="p">)</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+</span><span class="p">}</span><span class="x">
+
+</span></code></pre>
+</div>
+
 
   </div>
 

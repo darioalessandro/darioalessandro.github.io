@@ -605,3 +605,32 @@ env := flag.String("env", "prod", "Environment")
 	fmt.Println("env:", *env)
 ```
 
+## Creating a test.
+
+Main command.
+
+```go
+go test
+```
+
+No need to create an special package, in order to create a test file, just name it:
+
+```go
+*_test.go
+```
+
+Example: main_test.go
+
+```go
+package main
+
+import "testing"
+
+func TestTruth(t * testing.T) {
+	if true != true {
+		t.Error("everything I know is wrong.")
+	}
+}
+
+```
+
