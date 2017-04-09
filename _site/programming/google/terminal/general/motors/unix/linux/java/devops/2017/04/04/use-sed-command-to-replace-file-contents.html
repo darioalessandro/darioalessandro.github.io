@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Dario Alessandro Lencina-Talarico</title>
-  <meta name="description" content="Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.">
+  <title>8. Use sed command to replace file contents</title>
+  <meta name="description" content="In place text replacement:">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html">
   <link rel="alternate" type="application/rss+xml" title="Dario Alessandro Lencina-Talarico" href="/feed.xml">
   
   
@@ -58,84 +58,33 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">8. Use sed command to replace file contents</h1>
+    <p class="post-meta"><time datetime="2017-04-04T11:00:00-04:00" itemprop="datePublished">Apr 4, 2017</time></p>
+  </header>
 
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="in-place-text-replacement">In place text replacement:</h2>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Apr 9, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95-703-Managing-DB-Tables-and-Data-integrity.html">Database Management 95-703 - Managing DB Tables and Data Integrity</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Apr 4, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html">8. Use sed command to replace file contents</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 21, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port.html">7. Find the PID of a process running on a given port</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 5, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet.html">6. Go: Cheatsheet</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 1, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/tar/linux/mac/tgz/.tar.gz/2017/03/01/untar-document.html">5: Untar file</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Feb 26, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html">3 Golang: Dependency Management</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Feb 12, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/02/12/Installing-go.html">0 Golang: Installing Go on Mac OS</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Feb 12, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/02/12/Golang-Hello-World.html">1 Golang: mandatory Hello World on Mac OS</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s1">''</span> <span class="s1">'s/oldword/newword/'</span> &lt;file&gt;.txt
+</code></pre>
 </div>
+
+<h2 id="practical-usecase-change-default-memory-of-zookeeper">Practical usecase: Change default memory of Zookeeper.</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sed -i <span class="s1">''</span> <span class="s1">'s/KAFKA_HEAP_OPTS="-Xmx512M -Xms512M"/KAFKA_HEAP_OPTS="-Xmx256M -Xms256M"/'</span> zookeeper-server-start.sh
+</code></pre>
+</div>
+
+<p>Will replace the KAFKA_HEAP_OPTS initial values from “-Xmx512M -Xms512M” to “-Xmx256M -Xms256M”.</p>
+
+
+  </div>
+
+  
+</article>
 
       </div>
     </main>

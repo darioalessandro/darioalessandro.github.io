@@ -1,5 +1,404 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-25T19:45:47-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">7. Find the PID of a process running on a given port</title><link href="http://localhost:4000/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port.html" rel="alternate" type="text/html" title="7. Find the PID of a process running on a given port" /><published>2017-03-21T11:00:00-04:00</published><updated>2017-03-21T11:00:00-04:00</updated><id>http://localhost:4000/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port</id><content type="html" xml:base="http://localhost:4000/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port.html">&lt;h2 id=&quot;netstat--vanp-tcp--grep-portnumber&quot;&gt;netstat -vanp tcp | grep &lt;b&gt;portnumber&lt;/b&gt;&lt;/h2&gt;</content><summary type="html">netstat -vanp tcp | grep portnumber</summary></entry><entry><title type="html">6. Go: Cheatsheet</title><link href="http://localhost:4000/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet.html" rel="alternate" type="text/html" title="6. Go: Cheatsheet" /><published>2017-03-05T10:00:00-05:00</published><updated>2017-03-05T10:00:00-05:00</updated><id>http://localhost:4000/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet</id><content type="html" xml:base="http://localhost:4000/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet.html">&lt;h2 id=&quot;declare-variables-and-constants&quot;&gt;Declare variables and constants&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-09T13:44:40-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">Database Management 95-703 - Managing DB Tables and Data Integrity</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95-703-Managing-DB-Tables-and-Data-integrity.html" rel="alternate" type="text/html" title="Database Management 95-703 - Managing DB Tables and Data Integrity" /><published>2017-04-09T11:00:00-04:00</published><updated>2017-04-09T11:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95%E2%80%93703-Managing%20DB%20Tables%20and%20Data%20integrity</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95-703-Managing-DB-Tables-and-Data-integrity.html">&lt;h2 id=&quot;outline&quot;&gt;Outline&lt;/h2&gt;
+
+&lt;p&gt;Managing database tables:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Creating tables.&lt;/li&gt;
+  &lt;li&gt;Modifiying structures.&lt;/li&gt;
+  &lt;li&gt;Deleting data and dropping tables.&lt;/li&gt;
+  &lt;li&gt;Recovering deleted tables.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Managing constraints.&lt;/p&gt;
+
+&lt;h2 id=&quot;database-tables&quot;&gt;Database tables&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Consists of columns and rows.&lt;/li&gt;
+  &lt;li&gt;Can be created and modified using “data definition” (DDL) statements.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;table-and-column-names&quot;&gt;Table and column names:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Can contain max 30 chars &amp;amp; no spaces.&lt;/li&gt;
+  &lt;li&gt;Must begin with a letter.&lt;/li&gt;
+  &lt;li&gt;Can contain digits, underscore (_), and #.&lt;/li&gt;
+  &lt;li&gt;Must be unique within db.&lt;/li&gt;
+  &lt;li&gt;Column names must be unique within table.&lt;/li&gt;
+  &lt;li&gt;No reserved words are allowed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;creating-a-table&quot;&gt;Creating a table&lt;/h2&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tablename&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columnname&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datatype&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;columnname&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datatype&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;constraints are optional.&lt;/p&gt;
+
+&lt;p&gt;Max 1000 columns per table (Oracle)&lt;/p&gt;
+
+&lt;h3 id=&quot;example-account-manager-table&quot;&gt;Example: Account Manager table&lt;/h3&gt;
+
+&lt;p&gt;The management of JustLee Books needs a table for account managers employed by the company&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager&lt;/span&gt;
+
+    &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amid&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;amfirst&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;amlast&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;amedate&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;DATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SYSDATE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;amsal&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;amcomm&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;region&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;region is not namespaced to be used in join ops with other tables.&lt;/p&gt;
+
+&lt;p&gt;A table structure can ve modified using &lt;strong&gt;ALTER TABLE&lt;/strong&gt; statements.&lt;/p&gt;
+
+&lt;p&gt;With the &lt;strong&gt;ALTER TABLE&lt;/strong&gt; statement we can:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add/Delete a column.&lt;/li&gt;
+  &lt;li&gt;Change column characteristics.&lt;/li&gt;
+  &lt;li&gt;Create/Delete a constrain.&lt;/li&gt;
+  &lt;li&gt;Modify a constraint’s definition.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;adding-a-column-to-a-table&quot;&gt;Adding a column to a table&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publisher&lt;/span&gt;
+   &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The new column is added at the end of the table and it is &lt;strong&gt;NULL&lt;/strong&gt; for all existing rows.&lt;/li&gt;
+  &lt;li&gt;Default value can be assigned.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;modifiying-an-existing-column&quot;&gt;Modifiying an existing column&lt;/h3&gt;
+
+&lt;p&gt;The modification cannot affect already existing data. (Oracle)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Typically, we can increase the width of a numeric or character column but cannot decrease it.&lt;/li&gt;
+  &lt;li&gt;Adding a default refers only to future values.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The last name of account managers could be up to 18 chars long.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;MODIFY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amlast&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;deleting-a-column&quot;&gt;Deleting a column.&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publisher&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLUMN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;delaying-deleting-a-column&quot;&gt;Delaying deleting a column&lt;/h3&gt;
+
+&lt;p&gt;Dropping a column from a large table can be slow.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publisher&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;SET&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNUSED&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Operation can not be undone.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publisher&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UNUSED&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;COLUMNS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;renaming-tables&quot;&gt;Renaming tables&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tablename&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RENAME&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldtablename&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newtablename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;dropping-a-table&quot;&gt;Dropping a table&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tablename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dropped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;constraints-in-sql&quot;&gt;Constraints in SQL&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Rules that the data in the database must follow.&lt;/li&gt;
+  &lt;li&gt;Values are verified whenever a row is to be inserted, updated or deleted.&lt;/li&gt;
+  &lt;li&gt;Prevent the deletion of a table if there are dependencies from other tables (i.e., FKs)&lt;/li&gt;
+  &lt;li&gt;Assigning names to constraints helps with their identification.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;constraint-types&quot;&gt;Constraint types&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;PRIMARY KEY&lt;/strong&gt; - a column (or group of columns) that uniquely identifies each row in a table, it enforces uniqueness
+and not null property.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;FOREIGN KEY&lt;/strong&gt; (or referential integrity) - value must match an existing value of a candidate key in a related table.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CHECK&lt;/strong&gt; defines a condition that a column values must satisfy.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UNIQUE&lt;/strong&gt; - requires that not two rows in a table have the same values in the specified column(s).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOT NULL&lt;/strong&gt; - ensures that a column contains no null values.&lt;/p&gt;
+
+&lt;h3 id=&quot;constraints-can-be-defined-at&quot;&gt;Constraints can be defined at:&lt;/h3&gt;
+
+&lt;p&gt;column level:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;columname&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datatype&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constraintname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constrainttype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;table level:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constraintname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;constrainttype&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columnname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;examples&quot;&gt;Examples:&lt;/h3&gt;
+
+&lt;p&gt;Column-level constraint:&lt;/p&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Author&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AuthorID&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIMARY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Lname&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Fname&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Table-level constraint:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;BookAuthor&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ISBN&lt;/span&gt;           &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;AuthorID&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;VarCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;bookauthor_pk&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;PRIMARY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isbn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authorid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;foreign-key-constraint&quot;&gt;Foreign Key constraint&lt;/h3&gt;
+
+&lt;p&gt;A Foreign key is defined in child table.&lt;/p&gt;
+
+&lt;p&gt;The foreign key definition in the child table:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;FOREIGN KEY&lt;/strong&gt; - defines the column(s) in the child table.
+&lt;strong&gt;REFERENCES&lt;/strong&gt; - identifies the parent table and column(s) in that table.
+    &lt;strong&gt;ON DELETE CASCADE&lt;/strong&gt; - when a row in the parent table is deleted, the dependent rows in the child table are
+    also deleted. &lt;strong&gt;«– Dangerous&lt;/strong&gt;
+    &lt;strong&gt;ON DELETE SET NULL&lt;/strong&gt; - when a row in the parent table is deleted, the FK values in the child table are set to null.&lt;/p&gt;
+
+&lt;h3 id=&quot;check-constraint&quot;&gt;Check constraint&lt;/h3&gt;
+
+&lt;p&gt;Defines a condition that must be satisfied by every row.&lt;/p&gt;
+
+&lt;p&gt;A single column may have serveral &lt;strong&gt;CHECK&lt;/strong&gt; constraints.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;NOT NULL&lt;/strong&gt; constraint is a special case of &lt;strong&gt;CHECK&lt;/strong&gt; constraint.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-constraint-indicators&quot;&gt;Common constraint indicators&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Constraint type&lt;/strong&gt;         &lt;strong&gt;ID&lt;/strong&gt;
+Primary Key                 PK
+Foreign Key                 FK
+Check                       CK
+Not Null                    NN
+Unique                      UK&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-constraints-after-table-is-created&quot;&gt;Adding constraints after table is created&lt;/h3&gt;
+
+&lt;p&gt;With &lt;strong&gt;ALTER TABLE&lt;/strong&gt; we can:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add/drop constraints&lt;/li&gt;
+  &lt;li&gt;Enable / disable constraints&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;constraint_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;column_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;adding-primary-key&quot;&gt;Adding Primary Key&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;promotion&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;promotion_gift_pk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;PRIMARY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;adding-foreign-keys&quot;&gt;Adding Foreign Keys&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders_customer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_fk&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;FOREIGN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;customer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;PREFERENCES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Customers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;customer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;adding-more-constraints&quot;&gt;Adding more constraints&lt;/h3&gt;
+
+&lt;p&gt;Unique:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publisher&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publisher_name_uk&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;UNIQUE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Not null:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;books&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;MODIFY&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;       &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pubid&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;books_pubid_nn&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Check:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders_shipdate_ck&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;CHECK&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orderdate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shipdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;adding-multiple-constraints-on-a-single-column&quot;&gt;Adding multiple constraints on a single column&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt; Oracle doe not verify the semantics!!&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager2&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;amsal&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager_amsal&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager_amsal_ck&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CHECK&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amsal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;dropping-constraints&quot;&gt;Dropping Constraints&lt;/h3&gt;
+
+&lt;p&gt;Use the &lt;strong&gt;ALTER TABLE&lt;/strong&gt; statement with the &lt;strong&gt;DROP CONSTRAINT&lt;/strong&gt; clause&lt;/p&gt;
+
+&lt;p&gt;When we drop a constraint, that constraint is no longer enforced by Oracle Server.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager2&lt;/span&gt;
+   &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager_amfirst_nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;disabling-constraints&quot;&gt;Disabling Constraints&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager2&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;DISABLE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cacctmanager_region_ck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;enabling-constraints&quot;&gt;Enabling Constraints&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acctmanager2&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ENABLE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cacctmanager_region_ck&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;altered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;drop-column---cascading-constraints&quot;&gt;Drop Column - Cascading Constraints&lt;/h3&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;PRIMARY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;fk&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;REFERENCES&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;atr1&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;atr2&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;CONSTRAINT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;check1_CK&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;          &lt;span class=&quot;k&quot;&gt;CHECK&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The following statements give errors:&lt;/p&gt;
+
+&lt;p&gt;```sql
+SQL&amp;gt; ALTER TABLE test DROP (pk);&lt;/p&gt;
+
+&lt;p&gt;cannot drop parent key column.
+```sql&lt;/p&gt;
+
+&lt;p&gt;```sql
+SQL&amp;gt; ALTER TABLE test DROP (atr1);&lt;/p&gt;
+
+&lt;p&gt;column is referenced in a multi-column constraint.
+```sql&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
+SQL&amp;gt; ALTER TABLE test
+   2 DROP (pk) CASCADE CONSTRAINTS;
+&lt;/code&gt;sql&lt;/p&gt;
+
+&lt;p&gt;if other columns used by the constraints defined on the dropped column are also dropped within the same statement, then
+&lt;strong&gt;CASCADE CONSTRAINTS&lt;/strong&gt; is not required.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
+SQL&amp;gt; ALTER TABLE test
+   2 DROP (pk, fk, atr1);
+&lt;/code&gt;sql&lt;/p&gt;</content><summary type="html">Outline</summary></entry><entry><title type="html">8. Use sed command to replace file contents</title><link href="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html" rel="alternate" type="text/html" title="8. Use sed command to replace file contents" /><published>2017-04-04T11:00:00-04:00</published><updated>2017-04-04T11:00:00-04:00</updated><id>http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents</id><content type="html" xml:base="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html">&lt;h2 id=&quot;in-place-text-replacement&quot;&gt;In place text replacement:&lt;/h2&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/oldword/newword/'&lt;/span&gt; &amp;lt;file&amp;gt;.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;practical-usecase-change-default-memory-of-zookeeper&quot;&gt;Practical usecase: Change default memory of Zookeeper.&lt;/h2&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/KAFKA_HEAP_OPTS=&quot;-Xmx512M -Xms512M&quot;/KAFKA_HEAP_OPTS=&quot;-Xmx256M -Xms256M&quot;/'&lt;/span&gt; zookeeper-server-start.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Will replace the KAFKA_HEAP_OPTS initial values from “-Xmx512M -Xms512M” to “-Xmx256M -Xms256M”.&lt;/p&gt;</content><summary type="html">In place text replacement:</summary></entry><entry><title type="html">7. Find the PID of a process running on a given port</title><link href="http://localhost:4000/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port.html" rel="alternate" type="text/html" title="7. Find the PID of a process running on a given port" /><published>2017-03-21T11:00:00-04:00</published><updated>2017-03-21T11:00:00-04:00</updated><id>http://localhost:4000/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port</id><content type="html" xml:base="http://localhost:4000/go/programming/google/golang/general/motors/80/8080/443/unix/linux/java/2017/03/21/find-PID-of-process-using-port.html">&lt;h2 id=&quot;netstat--vanp-tcp--grep-portnumber&quot;&gt;netstat -vanp tcp | grep &lt;b&gt;portnumber&lt;/b&gt;&lt;/h2&gt;</content><summary type="html">netstat -vanp tcp | grep portnumber</summary></entry><entry><title type="html">6. Go: Cheatsheet</title><link href="http://localhost:4000/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet.html" rel="alternate" type="text/html" title="6. Go: Cheatsheet" /><published>2017-03-05T10:00:00-05:00</published><updated>2017-03-05T10:00:00-05:00</updated><id>http://localhost:4000/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet</id><content type="html" xml:base="http://localhost:4000/go/programming/google/golang/general/motors/2017/03/05/Go-cheatsheet.html">&lt;h2 id=&quot;declare-variables-and-constants&quot;&gt;Declare variables and constants&lt;/h2&gt;
 
 &lt;h1 id=&quot;constants&quot;&gt;Constants&lt;/h1&gt;
 
