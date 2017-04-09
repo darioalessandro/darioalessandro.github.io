@@ -361,19 +361,19 @@ The following statements give errors:
 SQL> ALTER TABLE test DROP (pk);
 
 cannot drop parent key column.
-```sql
+```
 
 ```sql
 SQL> ALTER TABLE test DROP (atr1);
 
 column is referenced in a multi-column constraint.
-```sql
+```
 
 
 ```sql
 SQL> ALTER TABLE test
    2 DROP (pk) CASCADE CONSTRAINTS;
-```sql
+```
 
 if other columns used by the constraints defined on the dropped column are also dropped within the same statement, then
 **CASCADE CONSTRAINTS** is not required.
@@ -381,4 +381,4 @@ if other columns used by the constraints defined on the dropped column are also 
 ```sql
 SQL> ALTER TABLE test
    2 DROP (pk, fk, atr1);
-```sql
+```

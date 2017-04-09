@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-09T13:44:40-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-09T13:45:46-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
 </subtitle><entry><title type="html">Database Management 95-703 - Managing DB Tables and Data Integrity</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95-703-Managing-DB-Tables-and-Data-integrity.html" rel="alternate" type="text/html" title="Database Management 95-703 - Managing DB Tables and Data Integrity" /><published>2017-04-09T11:00:00-04:00</published><updated>2017-04-09T11:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95%E2%80%93703-Managing%20DB%20Tables%20and%20Data%20integrity</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95-703-Managing-DB-Tables-and-Data-integrity.html">&lt;h2 id=&quot;outline&quot;&gt;Outline&lt;/h2&gt;
 
 &lt;p&gt;Managing database tables:&lt;/p&gt;
@@ -363,30 +363,30 @@ Unique                      UK&lt;/p&gt;
 
 &lt;p&gt;The following statements give errors:&lt;/p&gt;
 
-&lt;p&gt;```sql
-SQL&amp;gt; ALTER TABLE test DROP (pk);&lt;/p&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;p&gt;cannot drop parent key column.
-```sql&lt;/p&gt;
+&lt;span class=&quot;n&quot;&gt;cannot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;drop&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;```sql
-SQL&amp;gt; ALTER TABLE test DROP (atr1);&lt;/p&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;p&gt;column is referenced in a multi-column constraint.
-```sql&lt;/p&gt;
+&lt;span class=&quot;k&quot;&gt;column&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;referenced&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;multi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;column&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
-SQL&amp;gt; ALTER TABLE test
-   2 DROP (pk) CASCADE CONSTRAINTS;
-&lt;/code&gt;sql&lt;/p&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;
+   &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CASCADE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONSTRAINTS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;if other columns used by the constraints defined on the dropped column are also dropped within the same statement, then
 &lt;strong&gt;CASCADE CONSTRAINTS&lt;/strong&gt; is not required.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sql
-SQL&amp;gt; ALTER TABLE test
-   2 DROP (pk, fk, atr1);
-&lt;/code&gt;sql&lt;/p&gt;</content><summary type="html">Outline</summary></entry><entry><title type="html">8. Use sed command to replace file contents</title><link href="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html" rel="alternate" type="text/html" title="8. Use sed command to replace file contents" /><published>2017-04-04T11:00:00-04:00</published><updated>2017-04-04T11:00:00-04:00</updated><id>http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents</id><content type="html" xml:base="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html">&lt;h2 id=&quot;in-place-text-replacement&quot;&gt;In place text replacement:&lt;/h2&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;
+   &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><summary type="html">Outline</summary></entry><entry><title type="html">8. Use sed command to replace file contents</title><link href="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html" rel="alternate" type="text/html" title="8. Use sed command to replace file contents" /><published>2017-04-04T11:00:00-04:00</published><updated>2017-04-04T11:00:00-04:00</updated><id>http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents</id><content type="html" xml:base="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html">&lt;h2 id=&quot;in-place-text-replacement&quot;&gt;In place text replacement:&lt;/h2&gt;
 
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/oldword/newword/'&lt;/span&gt; &amp;lt;file&amp;gt;.txt
 &lt;/code&gt;&lt;/pre&gt;

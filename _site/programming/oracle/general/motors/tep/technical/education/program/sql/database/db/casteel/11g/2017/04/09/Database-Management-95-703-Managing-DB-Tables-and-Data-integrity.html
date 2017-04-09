@@ -430,30 +430,30 @@ Unique                      UK</p>
 
 <p>The following statements give errors:</p>
 
-<p>```sql
-SQL&gt; ALTER TABLE test DROP (pk);</p>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span> <span class="k">DROP</span> <span class="p">(</span><span class="n">pk</span><span class="p">);</span>
 
-<p>cannot drop parent key column.
-```sql</p>
+<span class="n">cannot</span> <span class="k">drop</span> <span class="n">parent</span> <span class="k">key</span> <span class="k">column</span><span class="p">.</span>
+</code></pre>
+</div>
 
-<p>```sql
-SQL&gt; ALTER TABLE test DROP (atr1);</p>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span> <span class="k">DROP</span> <span class="p">(</span><span class="n">atr1</span><span class="p">);</span>
 
-<p>column is referenced in a multi-column constraint.
-```sql</p>
+<span class="k">column</span> <span class="k">is</span> <span class="n">referenced</span> <span class="k">in</span> <span class="n">a</span> <span class="n">multi</span><span class="o">-</span><span class="k">column</span> <span class="k">constraint</span><span class="p">.</span>
+</code></pre>
+</div>
 
-<p><code class="highlighter-rouge">sql
-SQL&gt; ALTER TABLE test
-   2 DROP (pk) CASCADE CONSTRAINTS;
-</code>sql</p>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span>
+   <span class="mi">2</span> <span class="k">DROP</span> <span class="p">(</span><span class="n">pk</span><span class="p">)</span> <span class="k">CASCADE</span> <span class="k">CONSTRAINTS</span><span class="p">;</span>
+</code></pre>
+</div>
 
 <p>if other columns used by the constraints defined on the dropped column are also dropped within the same statement, then
 <strong>CASCADE CONSTRAINTS</strong> is not required.</p>
 
-<p><code class="highlighter-rouge">sql
-SQL&gt; ALTER TABLE test
-   2 DROP (pk, fk, atr1);
-</code>sql</p>
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span>
+   <span class="mi">2</span> <span class="k">DROP</span> <span class="p">(</span><span class="n">pk</span><span class="p">,</span> <span class="n">fk</span><span class="p">,</span> <span class="n">atr1</span><span class="p">);</span>
+</code></pre>
+</div>
 
   </div>
 
