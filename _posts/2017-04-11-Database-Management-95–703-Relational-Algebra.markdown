@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Database Management 95-703 - Relational Algebra"
-date:   2017-04-09 10:00:00 -0500
+date:   2017-04-11 10:00:00 -0500
 categories:  programming oracle general motors tep technical education program sql database db casteel Oracle 11g
 ---
 
