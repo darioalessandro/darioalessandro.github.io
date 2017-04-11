@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Database Management 95-703 - Relational Algebra</title>
+  <meta name="description" content="Created by Dr Codd @ IBM.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/09/Database-Management-95-703-Relational-Algebra.html">
+  <link rel="alternate" type="application/rss+xml" title="Dario Alessandro Lencina-Talarico" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Dario Alessandro Lencina-Talarico</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Database Management 95-703 - Relational Algebra</h1>
+    <p class="post-meta"><time datetime="2017-04-09T11:00:00-04:00" itemprop="datePublished">Apr 9, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Created by Dr Codd @ IBM.</p>
+
+<h2 id="properties-of-relations">Properties of relations</h2>
+
+<ul>
+  <li>
+    <p>The relation has a name that is distinct from all other relations.</p>
+  </li>
+  <li>
+    <p>Each tuple is distinct, there are no duplicate tuples.</p>
+  </li>
+  <li>
+    <p>The order of tuples has no significance, theoretically.</p>
+  </li>
+  <li>
+    <p>Each attribute has a distinct name within a relation.</p>
+  </li>
+  <li>
+    <p>The order of attributes has no significance.</p>
+  </li>
+  <li>
+    <p>The values of an attribute are all from the same domain.</p>
+  </li>
+</ul>
+
+<h2 id="relational-algebra">Relational Algebra</h2>
+
+<p>Relational algebra operations work on one or two relations that define another relation without changing the original
+relation(s).</p>
+
+<h1 id="operations">Operations</h1>
+
+<p><img src="http://localhost:4000/assets/relationalAlgebraOps.png" alt="Relational Algebra" /></p>
+
+<h2 id="selection">Selection</h2>
+
+<p>σ<sub>predicate</sub>(R)</p>
+
+<ul>
+  <li>
+    <p>Works on a single relation R and defines a relation that contains onl those tuples (rows) of relation R that satisfy
+the specified condition.</p>
+  </li>
+  <li>
+    <p>A simple condition is:
+a column name, comparison operator another column.</p>
+  </li>
+  <li>
+    <p><strong>Compound</strong> conditions - formed by connecting simple conditions using <strong>AND, OR and NOT</strong> operators.</p>
+  </li>
+</ul>
+
+<h1 id="example">Example:</h1>
+
+<p>List all books in the “Computer” category:</p>
+
+<p>σ<sub>Category = ‘COMPUTER’</sub>(Books)</p>
+
+<h2 id="projection">Projection:</h2>
+
+<p>Works on a single relation R and defines a relation that contains a “vertical subset” of R.</p>
+
+<h1 id="example-1">Example:</h1>
+
+<p>Create a list of publishers, showing only the publisher ID and name</p>
+
+<p>π<sub>PubID, Name</sub>(Publisher)</p>
+
+<h2 id="union">Union</h2>
+
+<p>R ∪ S</p>
+
+<ul>
+  <li>
+    <p>Union of two relations R and S with I and J tuples, respectively, is obtanined by
+“combining” them into one relation. All duplicate tuples are eliminated. Relations R and S
+must be union compatible.</p>
+  </li>
+  <li>
+    <p>Two relations are union compatible if they have the same number of attributes with each pair of
+corresponding attributes having the same domain.</p>
+  </li>
+</ul>
+
+<h1 id="example-2">Example:</h1>
+
+<p>Create a list of customer names from either Washington of Wyoming state.</p>
+
+<p>π<sub>Customer#, Firstname, Lastname, State</sub>(σ<sub>State = ‘WA’</sub>(Customers))</p>
+
+<p><strong>∪</strong></p>
+
+<p>π<sub>Customer#, Firstname, Lastname, State</sub>(σ<sub>State = ‘WY’</sub>(Customers))</p>
+
+<h2 id="intersection">Intersection</h2>
+
+<p>R ∩ S</p>
+
+<ul>
+  <li>
+    <p>The intersection consists of the set of all tuples that are in both R and S</p>
+  </li>
+  <li>
+    <p>R and S must be union-compatible</p>
+  </li>
+</ul>
+
+<h1 id="example-3">Example:</h1>
+
+<p>List ID of publishers that published both family life books and children books.</p>
+
+<p>π<sub>PubID</sub>(σ<sub>Category = ‘FAMILY LIFE’</sub>(Books))</p>
+
+<p><strong>∩</strong></p>
+
+<p>π<sub>PubID</sub>(σ<sub>State = ‘CHILDREN’</sub>(Books))</p>
+
+<h2 id="set-difference">Set Difference</h2>
+
+<p>R - S</p>
+
+<ul>
+  <li>Relations S and S must be union-compatible</li>
+</ul>
+
+<h1 id="example-4">Example:</h1>
+
+<p>List order number, customer number, order date and the ship date for all orders shipped to Georgia except the ones shipped
+to Atlanta, Georgia.</p>
+
+<p>π<sub>Order#,Customer#,OrderDate,ShipDate</sub></p>
+
+<p>(σ<sub>Shipstate = ‘GA’</sub>(Orders)) - (σ<sub>Shipcity = ‘Atlanta’ AND Shipstate = ‘GA’</sub>(Orders))</p>
+
+<h2 id="cartesian-product">Cartesian Product</h2>
+
+<p>R × S</p>
+
+<ul>
+  <li>The Cartesian product defines a relation that is the concatenation of every tuple (row) of relation R with every tuple (row)
+of relation S.</li>
+</ul>
+
+<h1 id="example-5">Example</h1>
+
+<p>JustLee Books needs to perform a manual book inventory in all three warehouses. Therefore, we need an inventory sheet
+listing each book with each warehouse.</p>
+
+<p>π<sub>ISBN,Title</sub>(Books) × π<sub>Location</sub>(Warehouses)</p>
+
+<h2 id="cartesian-product--selection">Cartesian Product &amp; Selection</h2>
+
+<p>List book title and the publisher name that published each book (i.e. use Selection over Cartesian Product)</p>
+
+<p>T &lt;- σ<sub>Publisher.PubID = Books.PubID</sub> ((π<sub>Title,PubID</sub>(Books)) × (π<sub>Name,PubID</sub>(Publisher)))</p>
+
+<p>π<sub>Title,Name</sub>(T))</p>
+
+<p>Cartesian Product &amp; Selection can be reduced to a single operation called <strong>join</strong></p>
+
+<h2 id="renaming-relations">Renaming Relations</h2>
+
+<ul>
+  <li>Changing the name of a relation only:</li>
+</ul>
+
+<p><strong>Assignment</strong> operation:</p>
+
+<p>T &lt;- π<sub>Name, PubID</sub>(Publisher)</p>
+
+<p><strong>Rename</strong> operation : ρ</p>
+
+<p>ρ<sub>R</sub>(T)</p>
+
+<p>Renaming both the relation and its attributes</p>
+
+<p>ρ<sub>R(PName,PCode)</sub>(T)</p>
+
+<p>Renaming only attributes</p>
+
+<p>ρ<sub>(PName, PCode)</sub>(T)</p>
+
+<h2 id="join-operations">Join Operations</h2>
+
+<p>Join operations are equivalent to performing a selection, over the Cartesian product of two operand relations.</p>
+
+<p>This is one of the reasons why relational systems have performance problems.</p>
+
+<p>There are various forms of join operation</p>
+
+<ul>
+  <li>
+    <p>Theta-join ⋈</p>
+  </li>
+  <li>
+    <p>Equi-join</p>
+  </li>
+  <li>
+    <p>Natural join</p>
+  </li>
+  <li>
+    <p>Outer join (⋊, ⋉, ⟗) (Left,Right,Full)</p>
+  </li>
+  <li>
+    <p>Semi-join (▷)</p>
+  </li>
+</ul>
+
+<h2 id="theta-join--θ-join">Theta-join (⋈) (θ-join)</h2>
+
+<p>We can rewrite the theta-join in terms of the basic Selection and Cartesian product:</p>
+
+<p>R ⋈ <sub>F</sub> S = σ <sub>F</sub> (R × S)</p>
+
+<p>Degree of a theta-join is a sum of the degrees of the relations R and S.</p>
+
+<p>If predicate F contains only equality (=), the term equi-join is used.</p>
+
+<h1 id="example-theta-join">Example: Theta-join</h1>
+
+<p>List the book title and the publisher name of all books published by those publishers.</p>
+
+<p>(π<sub>PubID, Title</sub> (Books))
+    ⋈ <sub>Books.PubID = Publisher.PubID</sub>(π<sub>PubID, Name</sub> (Publisher))</p>
+
+<h2 id="natural-join">Natural Join</h2>
+
+<p>R ⋈ S</p>
+
+<ul>
+  <li>Is an equi-join of the two relations R and S over all common attributes. One occurrence of each common attribut is eliminated
+from the result.</li>
+</ul>
+
+<h1 id="example---natural-join">Example - Natural Join</h1>
+
+<p>List the book title and the publisher name of all books published by those publishers.</p>
+
+<p>π<sub>PubID,Title,Name</sub>(Books  ⋈ Publisher)</p>
+
+<h2 id="outer-join----leftrightfull">Outer Join (⋊, ⋉, ⟗) (Left,Right,Full)</h2>
+
+<p>Often in joining two relations there is no matching value in the join columns.</p>
+
+<p>To display rows in the result that do not have matching values in the join column, we use the outer join operation:</p>
+
+<p>R ⋊<sub>F</sub> S</p>
+
+<p>Left outer join ⋊</p>
+
+<p>Right outer join ⋉</p>
+
+<p>Full outer join ⟗</p>
+
+<p>If no condition is specified, we called natural outer join, if there’s a condition, we called theta outer join.</p>
+
+<h1 id="example---left-outer-join">Example - Left Outer Join</h1>
+
+<p>List all customers. For those who placed orders, show the corresponding order number.</p>
+
+<p>π<sub>FirstName, LastName, Order#</sub>(Customers ⋊ Orders)</p>
+
+<h2 id="semi---join-">Semi - join (▷)</h2>
+
+<p>Defines a relation that contains the tuples of R that participate in the theta join of R with S.</p>
+
+<h2 id="division-">Division (÷)</h2>
+
+<p>R ÷ S</p>
+
+<ul>
+  <li>The division consists of the set of tuples from R defined over the common attributes C that match the combination of
+every tuple in S.</li>
+</ul>
+
+<h1 id="example-6">Example:</h1>
+
+<p>List customer number and last name of the customers who ordered all books in the “Family Life” category in the past (but
+not necessarily on the same order)</p>
+
+<p>π<sub>Customer#,LastName, ISBN</sub>((Customers ⋈ Orders) ⋈ OrderItems)</p>
+
+<p>÷</p>
+
+<p>π<sub>ISBN</sub>(σ<sub>Category = “FAMILY LIFE”</sub> (Books))</p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dario Alessandro Lencina-Talarico</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Dario Alessandro Lencina-Talarico
+            
+            </li>
+            
+            <li><a href="mailto:darioalessandrolencina@gmail.com">darioalessandrolencina@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/darioalessandro"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">darioalessandro</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/darioalessandro"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">darioalessandro</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
