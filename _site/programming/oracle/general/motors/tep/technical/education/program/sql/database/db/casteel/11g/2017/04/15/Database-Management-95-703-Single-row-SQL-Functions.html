@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Database Management 95-703 - Single Row SQL Functions</title>
+  <meta name="description" content="Outline">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/15/Database-Management-95-703-Single-row-SQL-Functions.html">
+  <link rel="alternate" type="application/rss+xml" title="Dario Alessandro Lencina-Talarico" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Dario Alessandro Lencina-Talarico</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Database Management 95-703 - Single Row SQL Functions</h1>
+    <p class="post-meta"><time datetime="2017-04-15T11:00:00-04:00" itemprop="datePublished">Apr 15, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="outline">Outline</h2>
+
+<ul>
+  <li>
+    <p>Char functions</p>
+  </li>
+  <li>
+    <p>Date functions</p>
+  </li>
+  <li>
+    <p>Numerical</p>
+  </li>
+  <li>
+    <p>Conversion</p>
+  </li>
+  <li>
+    <p>Functions involving <strong>NULL</strong> value</p>
+  </li>
+</ul>
+
+<h2 id="types-of-sql-functions">Types of SQL functions</h2>
+
+<ul>
+  <li>
+    <p>Function: block of code that accepts arguments and returns a single value.</p>
+
+    <ul>
+      <li>
+        <p>They do not change values in the base tables unless they are used in <strong>UPDATE</strong> statements.</p>
+      </li>
+      <li>
+        <p>Can be nested.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Single-row functions</p>
+
+    <ul>
+      <li>
+        <p>Accept a single value as an input and return one result per row in a query.</p>
+      </li>
+      <li>
+        <p>May return a value of different data type.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Multiple-row functions</p>
+
+    <ul>
+      <li>Accept a group of values as an input and return one result per group.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="types-of-single-row-functions">Types of single-row functions</h2>
+
+<p>Case conversion : UPPER, LOWER, INITCAP</p>
+
+<p>Char, Manipulation: SUBSTR, INSTR, LENGTH, LPAD, TRIP, REPLACE,..</p>
+
+<p>DATE: ADD_MONTHS, NEXT_DAY,…</p>
+
+<p>Numerical: ROUND, TRUNC, …</p>
+
+<p>Type conversion: TO_DATE, TO_CHAR, TO_NUMBER</p>
+
+<p>Other: NVL, NVL2 (null value functions)</p>
+
+<h2 id="case-conversion-functions">Case conversion functions</h2>
+
+<ul>
+  <li>
+    <p>If used in <strong>SELECT</strong> clause they alter the appereance of queries.</p>
+  </li>
+  <li>
+    <p>If used in <strong>WHERE</strong> clause they alter the values used in comparisons.</p>
+  </li>
+</ul>
+
+<h1 id="example">Example:</h1>
+
+<p>List the name (first and last) of any customer whose last name spells ‘nelson’</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span>    <span class="k">SELECT</span>  <span class="n">INITCAP</span><span class="p">(</span><span class="n">firstname</span><span class="p">)</span> <span class="nv">"First Name"</span><span class="p">,</span>
+                <span class="k">UPPER</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="nv">"Last Name"</span>
+        <span class="k">FROM</span>    <span class="n">customers</span>
+        <span class="k">WHERE</span>   <span class="k">LOWER</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="o">=</span> <span class="s1">'nelson'</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>How the <strong>INITCAP</strong> works?</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">INITCAP</span><span class="p">(</span><span class="s1">'sAN fRanCIScO'</span><span class="p">)</span> <span class="nv">"Initcap F."</span> <span class="k">From</span> <span class="n">dual</span><span class="p">;</span>
+
+<span class="n">Initcap</span> <span class="n">F</span><span class="p">.</span>
+<span class="c1">-----------------</span>
+<span class="n">San</span> <span class="n">Francisco</span>
+</code></pre>
+</div>
+
+<h2 id="character-manipulation">Character manipulation</h2>
+
+<p><strong>LENGTH(c)</strong> - returns the number of chars.</p>
+
+<p>**SUBSTR(c,p,1) - extracts a substring.</p>
+
+<p>c = input
+p = position of the extraction (can be negative, right to left)
+l = length of the output string</p>
+
+<h1 id="length-function">LENGTH function</h1>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="k">LENGTH</span><span class="p">(</span><span class="n">address</span><span class="p">))</span> <span class="nv">"Max length"</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+
+<span class="k">Max</span> <span class="k">Length</span>
+<span class="c1">-------------</span>
+<span class="mi">20</span>
+</code></pre>
+</div>
+
+<h1 id="substr-function">SUBSTR function</h1>
+
+<p>Extract the first three characters from customers zip codes in order to identify geographical areas</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">SUBSTR</span><span class="p">(</span><span class="n">zip</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="nv">"Area"</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">;</span>
+
+<span class="n">Area</span>
+<span class="c1">---------------</span>
+<span class="mi">331</span>
+<span class="mi">079</span>
+<span class="p">...</span>
+
+<span class="mi">18</span> <span class="k">rows</span> <span class="n">selected</span><span class="p">.</span>
+</code></pre>
+</div>
+
+<h1 id="instrstr1str2po">INSTR(str1,str2,[p,o])</h1>
+
+<p>returns the position of the first character of str2 located within the str1,</p>
+
+<p>where</p>
+
+<p>str1 = search string
+str2 = string to be located in str1
+p = start position of the search
+o = occurrence of interest</p>
+
+<p>Calculate the position of the first comma within the contact name of publisher (i.e., the name in Contacts table), position
+of a coma after the 9th character, and position of the second comma.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span>    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">','</span><span class="p">)</span>    <span class="nv">"1st Comma"</span><span class="p">,</span>
+                     <span class="n">INSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">','</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="nv">"Start at 10"</span><span class="p">,</span>
+                     <span class="n">INSTR</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="s1">','</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="nv">"2nd Comma"</span>
+        <span class="k">FROM</span> <span class="n">contacts</span><span class="p">;</span>
+
+</code></pre>
+</div>
+
+<h1 id="nesting-functions">Nesting functions</h1>
+
+<p>Extract last name and first name from the “contact name” of publisher.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span>
+            <span class="n">SUBSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">INSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">','</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">"Last Name"</span><span class="p">,</span>
+            <span class="n">SUBSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">INSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">','</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s1">','</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nv">"First Name"</span>
+    <span class="k">FROM</span> <span class="n">contacts</span><span class="p">;</span>
+
+    <span class="n">NAME</span>                                <span class="k">Last</span> <span class="n">Name</span>       <span class="k">First</span> <span class="n">Name</span>
+    <span class="c1">-----------------------------------------------------------------</span>
+    <span class="n">LaFodant</span><span class="p">,</span><span class="n">Mike</span><span class="p">,</span><span class="mi">934</span><span class="o">-</span><span class="mi">384</span><span class="o">-</span><span class="mi">3493</span>          <span class="n">LaFodant</span>        <span class="n">Mike</span>
+</code></pre>
+</div>
+
+<h1 id="lpad">LPAD</h1>
+
+<p>LPAD(c,l,s) - returns a padded string, where</p>
+
+<p>c = input string to be padded on the left
+l = length of the output string after being padded
+s = character to be used as padding</p>
+
+<p>For every customer with a first name starting with ‘J’, provide the first name padded with spaces and then padded with ‘*’
+to a total width of 12 chars.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span>     <span class="n">firstname</span><span class="p">,</span>
+                <span class="n">LPAD</span><span class="p">(</span><span class="n">firstname</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span><span class="s1">' '</span><span class="p">)</span> <span class="nv">"Pad with spaces"</span><span class="p">,</span>
+                <span class="n">LPAD</span><span class="p">(</span><span class="n">firstname</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">'*'</span><span class="p">)</span> <span class="nv">"Pad with *"</span>
+     <span class="k">FROM</span>       <span class="n">customers</span>
+     <span class="k">WHERE</span>      <span class="k">UPPER</span><span class="p">(</span><span class="n">firstname</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'J%'</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h1 id="character-manipulation-cont">Character manipulation (cont.)</h1>
+
+<p>RTRIM(c,[s]) removes a string from the right,
+where:
+    c = character string to be trimmed
+    s = string to be removed from the right of c, if no specified it removed the spaces.</p>
+
+<p>REPLACE(c,s,r) - looks for occurrences of specific string and, if found, replaces it with another, where:</p>
+
+<p>c = character string to be searched.
+s = string to be found
+r = string to be substituted for s</p>
+
+<h1 id="ltrim-and-rtrim-functions">LTRIM and RTRIM functions</h1>
+
+<p>For all customers who use “P.O Box” as address, list the customer name, the address and separately only the box number:</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span>    <span class="k">SELECT</span>  <span class="n">RTRIM</span><span class="p">(</span><span class="n">firstname</span><span class="p">)</span> <span class="o">||</span><span class="s1">' '</span> <span class="o">||</span> <span class="n">RTRIM</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="nv">"Name"</span><span class="p">,</span>
+                <span class="n">address</span><span class="p">,</span> <span class="n">LTRIM</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="s1">'P.O. BOX '</span><span class="p">)</span> <span class="nv">"Box #"</span>
+        <span class="k">FROM</span>    <span class="n">customers</span>
+        <span class="k">WHERE</span>   <span class="n">address</span> <span class="k">LIKE</span> <span class="s1">'P.O. BOX%'</span><span class="p">;</span>
+
+<span class="n">Name</span>                    <span class="n">ADDRESS</span>             <span class="n">Box</span> <span class="o">#</span>
+<span class="c1">--------------------------------------------------------</span>
+<span class="n">BONITA</span> <span class="n">MORALES</span>          <span class="n">P</span><span class="p">.</span><span class="n">O</span><span class="p">.</span> <span class="n">BOX</span> <span class="mi">651</span>        <span class="mi">651</span>
+
+</code></pre>
+</div>
+
+<h1 id="replace-function">REPLACE function</h1>
+
+<p>Replace occurence of “P.O” in customer’s address with “Post Office”</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span>     <span class="n">address</span><span class="p">,</span>
+                <span class="k">REPLACE</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="s1">'P.O.'</span><span class="p">,</span> <span class="nv">"Post Office"</span><span class="p">)</span> <span class="nv">"Corrected addr."</span>
+     <span class="k">FROM</span>       <span class="n">customers</span><span class="p">;</span>
+
+<span class="n">ADDRESS</span>                 <span class="n">Corrected</span> <span class="n">Addr</span><span class="p">.</span>
+<span class="c1">----------------------------------------------------</span>
+<span class="n">P</span><span class="p">.</span><span class="n">O</span><span class="p">.</span> <span class="n">BOX</span> <span class="mi">651</span>            <span class="n">Post</span> <span class="n">Office</span> <span class="n">BOX</span> <span class="mi">651</span>
+<span class="n">P</span><span class="p">.</span><span class="n">O</span><span class="p">.</span> <span class="n">BOX</span> <span class="mi">9835</span>           <span class="n">Post</span> <span class="n">Office</span> <span class="n">BOX</span> <span class="mi">9835</span>
+</code></pre>
+</div>
+
+<h1 id="date-functions">Date functions</h1>
+
+<p>MONTHS_BETWEEN(date1,date2)
+    - Calculates the number of months between 2 dates.
+    - Non - integer portion of the result represents a portion of a month.</p>
+
+<p>ADD_MONTHS(date,n)
+    - Adds n (number of months) to the date.</p>
+
+<p>NEXT_DAY(date,x)
+    - Determines the next occurrence of a specified day of the week (x) following the given <strong>date</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>```sql
+SELECT NEXT_DAY('17-APR-2015', 'MONDAY') AS "Renegotiation" FROM dual;
+
+Renegotia
+-------------
+20-APR-15
+```
+</code></pre>
+</div>
+
+<p>LAST_DAY(date)
+    - Finds the date of the last day of the month that includes the given date.</p>
+
+<p>EXTRACT( X FROM date)
+    - Extracts and returns a year, month, day etc. from given date.
+    - Result is a numberic value.</p>
+
+<h1 id="arithmetic-ops-with-dates">Arithmetic ops with dates</h1>
+
+<ul>
+  <li>
+    <p>Adding or subtracting a number to or from a date results in a date value.</p>
+  </li>
+  <li>
+    <p>Adding hours to a date is possible but the number of hours need to be given in terms of days (i.e., the number/24).</p>
+  </li>
+  <li>
+    <p>Subtracting two dates results in a number of days between dates. The result can be expressed as number of weeks, (i.e. result/7)
+months (result/30) or years (result/365).</p>
+  </li>
+</ul>
+
+<h1 id="numerical-functions">Numerical functions</h1>
+
+<p>ROUND(n,p) - rounds a numerical value to the stated precision, where:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>n = the value to be rounded.
+p = position of the digit to which the value **n** should be rounded.
+</code></pre>
+</div>
+
+<p>TRUNC(n,p) truncates a numerical value to the stated precision, where:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>n = the value to be truncated.
+p = position of the digit to which the value of **n** should be truncated.
+</code></pre>
+</div>
+
+<p><strong>p</strong> could be positive (to the right of the decimal) or negative (the position to the left of the decimal).</p>
+
+<h1 id="numerical-functions-with-dates">Numerical functions with dates</h1>
+
+<p>ROUND(d,f) - rounds dates into the specified level defined by the format, where: <strong>d</strong> is the date, and f is the format:</p>
+
+<p>‘YEAR’, ‘MONTH’, ‘DAY’, etc.</p>
+
+<h1 id="implicit-date-type-conversion">Implicit date type conversion</h1>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code>
+<span class="k">From</span>                <span class="k">To</span>
+<span class="c1">------------------------------------</span>
+<span class="n">NUMBER</span>              <span class="n">VARCHAR2</span> <span class="k">or</span> <span class="n">CHAR</span>
+<span class="n">DATE</span>                <span class="n">VARCHAR2</span> <span class="k">or</span> <span class="n">CHAR</span>
+<span class="n">VARCHAR2</span> <span class="k">or</span> <span class="n">CHAR</span>    <span class="n">NUMBER</span>
+<span class="n">VARCHAR2</span> <span class="k">or</span> <span class="n">CHAR</span>    <span class="n">DATE</span>
+</code></pre>
+</div>
+
+<h2 id="example-1">Example</h2>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code>
+<span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span>     <span class="s1">'Order '</span> <span class="o">||</span> <span class="k">order</span><span class="o">#</span> <span class="o">||</span> <span class="s1">'from customer '</span> <span class="o">||</span> <span class="n">customer</span><span class="o">#</span> <span class="o">||</span> <span class="s1">' was shipped on '</span>
+                <span class="o">||</span> <span class="n">shipdate</span> <span class="k">AS</span> <span class="nv">"Order information"</span>
+     <span class="k">FROM</span>       <span class="n">orders</span>
+     <span class="k">WHERE</span>      <span class="n">orderdate</span> <span class="o">=</span> <span class="s1">'03-APR-09'</span>
+     <span class="k">AND</span>        <span class="n">shipdate</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+     <span class="k">AND</span>        <span class="n">shipcost</span> <span class="o">&gt;</span> <span class="s1">'0.0'</span><span class="p">;</span>
+
+</code></pre>
+</div>
+
+<h2 id="conversion-functions">Conversion functions</h2>
+
+<p>TO_DATE, TO_CHAR, TO_NUMBER.</p>
+
+<h1 id="to_date">TO_DATE</h1>
+
+<p>TO_DATE(d,f)
+d is a string representing date
+f is the format</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span>     <span class="k">order</span><span class="o">#</span><span class="p">,</span> <span class="n">orderdate</span><span class="p">,</span> <span class="n">shopdate</span>
+     <span class="k">FROM</span>       <span class="n">orders</span>
+     <span class="k">WHERE</span>      <span class="n">orederdate</span> <span class="o">-</span> <span class="n">TO_DATE</span><span class="p">(</span><span class="s1">'March 31, 2009'</span><span class="p">,</span> <span class="s1">'Month DD, YYYY'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h1 id="date-formats">Date formats</h1>
+
+<p><img src="http://localhost:4000/assets/dateformats.png" alt="Date formats" /></p>
+
+<h1 id="time-and-number-formats">Time and number formats</h1>
+
+<p><img src="http://localhost:4000/assets/timeandnumbersformats.png" alt="Date formats" /></p>
+
+<h1 id="to_char-df">TO_CHAR (d,f)</h1>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">SELECT</span>     <span class="n">title</span><span class="p">,</span>
+                <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">pubdate</span><span class="p">,</span><span class="s1">'MONTH DD, YYYY'</span><span class="p">)</span> <span class="nv">"Publication Date"</span><span class="p">,</span>
+                <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="nv">"Price"</span>
+    <span class="k">FROM</span>        <span class="n">books</span>
+    <span class="k">WHERE</span>       <span class="n">isbn</span> <span class="o">=</span> <span class="s1">'0401140733'</span><span class="p">;</span>
+
+<span class="n">TITLE</span>               <span class="n">Publication</span> <span class="n">Date</span>            <span class="n">Price</span>
+<span class="c1">--------------------------------------------------------------</span>
+<span class="n">REVENGE</span> <span class="k">OF</span> <span class="n">MICKEY</span>   <span class="n">DECEMBER</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">2005</span>           <span class="err">$</span><span class="mi">22</span><span class="p">.</span><span class="mi">00</span>
+</code></pre>
+</div>
+
+<h2 id="using-null-values">Using NULL values</h2>
+
+<p>Any comparison will null returns unknown.</p>
+
+<p>Results of <strong>WHERE</strong> clause predicate is treated as false if it evaluates to unknown.</p>
+
+<p>Expressions that involve <strong>NULL</strong> values result in a <strong>NULL</strong> value.</p>
+
+<p>** Never compare with NULL using ‘= NULL’. use <strong>IS NULL</strong></p>
+
+<h1 id="three-values-logic">“Three values” logic</h1>
+
+<p><img src="http://localhost:4000/assets/threevalueslogic.png" alt="Date formats" /></p>
+
+<h1 id="null-functions">NULL functions</h1>
+
+<p>NVL(x,z) substitutes a value for a <strong>NULL</strong> similar to a default value if null.</p>
+
+<p>NVL2(x,y,z)</p>
+
+<p><strong>y</strong> is the value to be substituted if <strong>x</strong> is not <strong>NULL</strong>
+<strong>z</strong> is the value to be substituted if <strong>x</strong> is <strong>NULL</strong></p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Dario Alessandro Lencina-Talarico</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Dario Alessandro Lencina-Talarico
+            
+            </li>
+            
+            <li><a href="mailto:darioalessandrolencina@gmail.com">darioalessandrolencina@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/darioalessandro"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">darioalessandro</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/darioalessandro"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">darioalessandro</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

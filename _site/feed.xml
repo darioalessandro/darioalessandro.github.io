@@ -1,5 +1,396 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-11T22:53:04-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">Database Management 95-703 - Multiple Table Queries</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/11/Database-Management-95-703-Multiple-Table-Queries.html" rel="alternate" type="text/html" title="Database Management 95-703 - Multiple Table Queries" /><published>2017-04-11T12:00:00-04:00</published><updated>2017-04-11T12:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/11/Database-Management-95%E2%80%93703-Multiple-Table-Queries</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/11/Database-Management-95-703-Multiple-Table-Queries.html">&lt;h2 id=&quot;outine&quot;&gt;Outine&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-15T13:33:51-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">Database Management 95-703 - Single Row SQL Functions</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/15/Database-Management-95-703-Single-row-SQL-Functions.html" rel="alternate" type="text/html" title="Database Management 95-703 - Single Row SQL Functions" /><published>2017-04-15T11:00:00-04:00</published><updated>2017-04-15T11:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/15/Database-Management-95%E2%80%93703-Single-row-SQL-Functions</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/15/Database-Management-95-703-Single-row-SQL-Functions.html">&lt;h2 id=&quot;outline&quot;&gt;Outline&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Char functions&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Date functions&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Numerical&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Conversion&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Functions involving &lt;strong&gt;NULL&lt;/strong&gt; value&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;types-of-sql-functions&quot;&gt;Types of SQL functions&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Function: block of code that accepts arguments and returns a single value.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;They do not change values in the base tables unless they are used in &lt;strong&gt;UPDATE&lt;/strong&gt; statements.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Can be nested.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Single-row functions&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Accept a single value as an input and return one result per row in a query.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;May return a value of different data type.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Multiple-row functions&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Accept a group of values as an input and return one result per group.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;types-of-single-row-functions&quot;&gt;Types of single-row functions&lt;/h2&gt;
+
+&lt;p&gt;Case conversion : UPPER, LOWER, INITCAP&lt;/p&gt;
+
+&lt;p&gt;Char, Manipulation: SUBSTR, INSTR, LENGTH, LPAD, TRIP, REPLACE,..&lt;/p&gt;
+
+&lt;p&gt;DATE: ADD_MONTHS, NEXT_DAY,…&lt;/p&gt;
+
+&lt;p&gt;Numerical: ROUND, TRUNC, …&lt;/p&gt;
+
+&lt;p&gt;Type conversion: TO_DATE, TO_CHAR, TO_NUMBER&lt;/p&gt;
+
+&lt;p&gt;Other: NVL, NVL2 (null value functions)&lt;/p&gt;
+
+&lt;h2 id=&quot;case-conversion-functions&quot;&gt;Case conversion functions&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;If used in &lt;strong&gt;SELECT&lt;/strong&gt; clause they alter the appereance of queries.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If used in &lt;strong&gt;WHERE&lt;/strong&gt; clause they alter the values used in comparisons.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;example&quot;&gt;Example:&lt;/h1&gt;
+
+&lt;p&gt;List the name (first and last) of any customer whose last name spells ‘nelson’&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;INITCAP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;First Name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;UPPER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Last Name&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;customers&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;LOWER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'nelson'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;How the &lt;strong&gt;INITCAP&lt;/strong&gt; works?&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INITCAP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'sAN fRanCIScO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Initcap F.&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;From&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Initcap&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;-----------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;San&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Francisco&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;character-manipulation&quot;&gt;Character manipulation&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;LENGTH(c)&lt;/strong&gt; - returns the number of chars.&lt;/p&gt;
+
+&lt;p&gt;**SUBSTR(c,p,1) - extracts a substring.&lt;/p&gt;
+
+&lt;p&gt;c = input
+p = position of the extraction (can be negative, right to left)
+l = length of the output string&lt;/p&gt;
+
+&lt;h1 id=&quot;length-function&quot;&gt;LENGTH function&lt;/h1&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;LENGTH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Max length&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;customers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;Max&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Length&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;-------------&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;substr-function&quot;&gt;SUBSTR function&lt;/h1&gt;
+
+&lt;p&gt;Extract the first three characters from customers zip codes in order to identify geographical areas&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DISTINCT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SUBSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Area&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;customers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Area&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;---------------&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;331&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;079&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+
+&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rows&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;instrstr1str2po&quot;&gt;INSTR(str1,str2,[p,o])&lt;/h1&gt;
+
+&lt;p&gt;returns the position of the first character of str2 located within the str1,&lt;/p&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;p&gt;str1 = search string
+str2 = string to be located in str1
+p = start position of the search
+o = occurrence of interest&lt;/p&gt;
+
+&lt;p&gt;Calculate the position of the first comma within the contact name of publisher (i.e., the name in Contacts table), position
+of a coma after the 9th character, and position of the second comma.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;nv&quot;&gt;&quot;1st Comma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Start at 10&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;2nd Comma&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contacts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;nesting-functions&quot;&gt;Nesting functions&lt;/h1&gt;
+
+&lt;p&gt;Extract last name and first name from the “contact name” of publisher.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;SUBSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Last Name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;SUBSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;First Name&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contacts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;NAME&lt;/span&gt;                                &lt;span class=&quot;k&quot;&gt;Last&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;First&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;-----------------------------------------------------------------&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;LaFodant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Mike&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;934&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;384&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3493&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;LaFodant&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;Mike&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;lpad&quot;&gt;LPAD&lt;/h1&gt;
+
+&lt;p&gt;LPAD(c,l,s) - returns a padded string, where&lt;/p&gt;
+
+&lt;p&gt;c = input string to be padded on the left
+l = length of the output string after being padded
+s = character to be used as padding&lt;/p&gt;
+
+&lt;p&gt;For every customer with a first name starting with ‘J’, provide the first name padded with spaces and then padded with ‘*’
+to a total width of 12 chars.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;LPAD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Pad with spaces&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;LPAD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Pad with *&quot;&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;customers&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;UPPER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'J%'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;character-manipulation-cont&quot;&gt;Character manipulation (cont.)&lt;/h1&gt;
+
+&lt;p&gt;RTRIM(c,[s]) removes a string from the right,
+where:
+    c = character string to be trimmed
+    s = string to be removed from the right of c, if no specified it removed the spaces.&lt;/p&gt;
+
+&lt;p&gt;REPLACE(c,s,r) - looks for occurrences of specific string and, if found, replaces it with another, where:&lt;/p&gt;
+
+&lt;p&gt;c = character string to be searched.
+s = string to be found
+r = string to be substituted for s&lt;/p&gt;
+
+&lt;h1 id=&quot;ltrim-and-rtrim-functions&quot;&gt;LTRIM and RTRIM functions&lt;/h1&gt;
+
+&lt;p&gt;For all customers who use “P.O Box” as address, list the customer name, the address and separately only the box number:&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;RTRIM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RTRIM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LTRIM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'P.O. BOX '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Box #&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;customers&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'P.O. BOX%'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;                    &lt;span class=&quot;n&quot;&gt;ADDRESS&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;Box&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;BONITA&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MORALES&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BOX&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;651&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;651&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;replace-function&quot;&gt;REPLACE function&lt;/h1&gt;
+
+&lt;p&gt;Replace occurence of “P.O” in customer’s address with “Post Office”&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;REPLACE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'P.O.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Post Office&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Corrected addr.&quot;&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;customers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ADDRESS&lt;/span&gt;                 &lt;span class=&quot;n&quot;&gt;Corrected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;----------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BOX&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;651&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Office&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BOX&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;651&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;O&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BOX&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9835&lt;/span&gt;           &lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Office&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BOX&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9835&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;date-functions&quot;&gt;Date functions&lt;/h1&gt;
+
+&lt;p&gt;MONTHS_BETWEEN(date1,date2)
+    - Calculates the number of months between 2 dates.
+    - Non - integer portion of the result represents a portion of a month.&lt;/p&gt;
+
+&lt;p&gt;ADD_MONTHS(date,n)
+    - Adds n (number of months) to the date.&lt;/p&gt;
+
+&lt;p&gt;NEXT_DAY(date,x)
+    - Determines the next occurrence of a specified day of the week (x) following the given &lt;strong&gt;date&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```sql
+SELECT NEXT_DAY('17-APR-2015', 'MONDAY') AS &quot;Renegotiation&quot; FROM dual;
+
+Renegotia
+-------------
+20-APR-15
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;LAST_DAY(date)
+    - Finds the date of the last day of the month that includes the given date.&lt;/p&gt;
+
+&lt;p&gt;EXTRACT( X FROM date)
+    - Extracts and returns a year, month, day etc. from given date.
+    - Result is a numberic value.&lt;/p&gt;
+
+&lt;h1 id=&quot;arithmetic-ops-with-dates&quot;&gt;Arithmetic ops with dates&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Adding or subtracting a number to or from a date results in a date value.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Adding hours to a date is possible but the number of hours need to be given in terms of days (i.e., the number/24).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Subtracting two dates results in a number of days between dates. The result can be expressed as number of weeks, (i.e. result/7)
+months (result/30) or years (result/365).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;numerical-functions&quot;&gt;Numerical functions&lt;/h1&gt;
+
+&lt;p&gt;ROUND(n,p) - rounds a numerical value to the stated precision, where:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;n = the value to be rounded.
+p = position of the digit to which the value **n** should be rounded.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;TRUNC(n,p) truncates a numerical value to the stated precision, where:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;n = the value to be truncated.
+p = position of the digit to which the value of **n** should be truncated.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;p&lt;/strong&gt; could be positive (to the right of the decimal) or negative (the position to the left of the decimal).&lt;/p&gt;
+
+&lt;h1 id=&quot;numerical-functions-with-dates&quot;&gt;Numerical functions with dates&lt;/h1&gt;
+
+&lt;p&gt;ROUND(d,f) - rounds dates into the specified level defined by the format, where: &lt;strong&gt;d&lt;/strong&gt; is the date, and f is the format:&lt;/p&gt;
+
+&lt;p&gt;‘YEAR’, ‘MONTH’, ‘DAY’, etc.&lt;/p&gt;
+
+&lt;h1 id=&quot;implicit-date-type-conversion&quot;&gt;Implicit date type conversion&lt;/h1&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;From&lt;/span&gt;                &lt;span class=&quot;k&quot;&gt;To&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;              &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CHAR&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DATE&lt;/span&gt;                &lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CHAR&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CHAR&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;VARCHAR2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CHAR&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;DATE&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;example-1&quot;&gt;Example&lt;/h2&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;     &lt;span class=&quot;s1&quot;&gt;'Order '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'from customer '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;customer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' was shipped on '&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shipdate&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Order information&quot;&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;orderdate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'03-APR-09'&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;shipdate&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;shipcost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;conversion-functions&quot;&gt;Conversion functions&lt;/h2&gt;
+
+&lt;p&gt;TO_DATE, TO_CHAR, TO_NUMBER.&lt;/p&gt;
+
+&lt;h1 id=&quot;to_date&quot;&gt;TO_DATE&lt;/h1&gt;
+
+&lt;p&gt;TO_DATE(d,f)
+d is a string representing date
+f is the format&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orderdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shopdate&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;orederdate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TO_DATE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'March 31, 2009'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Month DD, YYYY'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;date-formats&quot;&gt;Date formats&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/dateformats.png&quot; alt=&quot;Date formats&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;time-and-number-formats&quot;&gt;Time and number formats&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/timeandnumbersformats.png&quot; alt=&quot;Date formats&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;to_char-df&quot;&gt;TO_CHAR (d,f)&lt;/h1&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;TO_CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pubdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'MONTH DD, YYYY'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Publication Date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;TO_CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;retail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'$990.99'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Price&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;books&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;isbn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0401140733'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;TITLE&lt;/span&gt;               &lt;span class=&quot;n&quot;&gt;Publication&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;Price&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;REVENGE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;OF&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MICKEY&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;DECEMBER&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2005&lt;/span&gt;           &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;using-null-values&quot;&gt;Using NULL values&lt;/h2&gt;
+
+&lt;p&gt;Any comparison will null returns unknown.&lt;/p&gt;
+
+&lt;p&gt;Results of &lt;strong&gt;WHERE&lt;/strong&gt; clause predicate is treated as false if it evaluates to unknown.&lt;/p&gt;
+
+&lt;p&gt;Expressions that involve &lt;strong&gt;NULL&lt;/strong&gt; values result in a &lt;strong&gt;NULL&lt;/strong&gt; value.&lt;/p&gt;
+
+&lt;p&gt;** Never compare with NULL using ‘= NULL’. use &lt;strong&gt;IS NULL&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;three-values-logic&quot;&gt;“Three values” logic&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/threevalueslogic.png&quot; alt=&quot;Date formats&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;null-functions&quot;&gt;NULL functions&lt;/h1&gt;
+
+&lt;p&gt;NVL(x,z) substitutes a value for a &lt;strong&gt;NULL&lt;/strong&gt; similar to a default value if null.&lt;/p&gt;
+
+&lt;p&gt;NVL2(x,y,z)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;y&lt;/strong&gt; is the value to be substituted if &lt;strong&gt;x&lt;/strong&gt; is not &lt;strong&gt;NULL&lt;/strong&gt;
+&lt;strong&gt;z&lt;/strong&gt; is the value to be substituted if &lt;strong&gt;x&lt;/strong&gt; is &lt;strong&gt;NULL&lt;/strong&gt;&lt;/p&gt;</content><summary type="html">Outline</summary></entry><entry><title type="html">Database Management 95-703 - Multiple Table Queries</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/11/Database-Management-95-703-Multiple-Table-Queries.html" rel="alternate" type="text/html" title="Database Management 95-703 - Multiple Table Queries" /><published>2017-04-11T12:00:00-04:00</published><updated>2017-04-11T12:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/11/Database-Management-95%E2%80%93703-Multiple-Table-Queries</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/11/Database-Management-95-703-Multiple-Table-Queries.html">&lt;h2 id=&quot;outine&quot;&gt;Outine&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -2233,143 +2624,4 @@ one too many.&lt;/p&gt;
 
 &lt;p&gt;z: The z option is very important and tells the tar command to uncompress the file (gzip).&lt;/p&gt;
 
-&lt;p&gt;f: This options tells tar that you are going to give it a file name to work with.&lt;/p&gt;</content><summary type="html">If Your File Extension is .tar.gz (or .tgz)</summary></entry><entry><title type="html">3 Golang: Dependency Management</title><link href="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html" rel="alternate" type="text/html" title="3 Golang: Dependency Management" /><published>2017-02-26T19:26:32-05:00</published><updated>2017-02-26T19:26:32-05:00</updated><id>http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management</id><content type="html" xml:base="http://localhost:4000/golang/package/management/dep/go/2017/02/26/Golang-dependency-management.html">&lt;h2 id=&quot;objectives&quot;&gt;Objectives&lt;/h2&gt;
-
-&lt;p&gt;Determine good options for dependency management tools and walk through the basics.&lt;/p&gt;
-
-&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
-
-&lt;p&gt;Managing dependencies is one of the basic building blocks of any decent modern programming language toolchain.&lt;/p&gt;
-
-&lt;h3 id=&quot;java&quot;&gt;Java:&lt;/h3&gt;
-
-&lt;p&gt;For Java we have the next:&lt;/p&gt;
-
-&lt;ol&gt;
-    &lt;li&gt; &lt;a href=&quot;https://maven.apache.org&quot;&gt;Maven&lt;/a&gt; Dependency Management + Build Tool.&lt;/li&gt;
-    &lt;li&gt; &lt;a href=&quot;http://ant.apache.org/ivy/&quot;&gt;Ivy&lt;/a&gt; Dependency Management.&lt;/li&gt;
-    &lt;li&gt; &lt;a href=&quot;http://www.scala-sbt.org&quot;&gt;SBT&lt;/a&gt; Build Tool, it uses Ivy for Dependency Management.&lt;/li&gt;
-    &lt;li&gt; &lt;a href=&quot;https://gradle.org/&quot;&gt;Gradle&lt;/a&gt; Build Tool and it uses Maven for Dependency Management.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;All the above are mature tools, with great support and different capabilities, I tend to like sbt + ivy because it is not some crappy scripting thing, it is a full fledged
-code driven build tool which allows for max flexibility and customization.&lt;/p&gt;
-
-&lt;h3 id=&quot;go&quot;&gt;Go:&lt;/h3&gt;
-
-&lt;p&gt;Go seems to have a huge vibrant community of devs working in parallel to build the tool chain.&lt;/p&gt;
-
-&lt;p&gt;Today we will explore a few ideas around package management and build tools.&lt;/p&gt;
-
-&lt;h2 id=&quot;go-get-command&quot;&gt;“go get” command&lt;/h2&gt;
-
-&lt;p&gt;As of today, the official way to get code from a website to your $GOPATH is&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;go get
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I find it very pedestrian, looks like a placeholder that, understandably, the Go team had to have to concentrate on the language.&lt;/p&gt;
-
-&lt;p&gt;There’s no way (that I am aware of) to specify the version of the dependency that you want, it always pulls the latest.&lt;/p&gt;
-
-&lt;p&gt;This makes it really hard to create reproducible builds.&lt;/p&gt;
-
-&lt;p&gt;One good thing is that it is capable of pulling code from git repos.&lt;/p&gt;
-
-&lt;h2 id=&quot;godep&quot;&gt;GoDep&lt;/h2&gt;
-
-&lt;p&gt;** (Excerpt From: Sau Sheong Chang. “Go Web Programming.”)&lt;/p&gt;
-
-&lt;p&gt;Heroku uses godep (https://github.com/tools/godep) to manage Go dependencies. To install godep, use the standard go get command:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; go get github.com/tools/godep
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Once godep is installed, you need to use it to bring in your dependencies. In the root directory of your web service, run this command:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;godep save
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This command will create a directory named Godeps, retrieve all the dependencies in your code, and copy their source code into the directory Godeps/_workspace.&lt;/p&gt;
-
-&lt;p&gt;It will also create a file named Godeps.json that lists all your dependencies. This listing shows an example of the Godeps.json file.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;ImportPath&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;github.com/sausheong/ws-h&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;GoVersion&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;go1.4.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;Deps&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&quot;ImportPath&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;github.com/lib/pq&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&quot;Comment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;go1.0-cutoff-31-ga33d605&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&quot;Rev&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a33d6053e025943d5dc89dfa1f35fe5500618df7&quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;To learn more about godep, please go to the &lt;a href=&quot;https://github.com/tools/godep&quot;&gt;godep github site&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;dep&quot;&gt;Dep&lt;/h2&gt;
-
-&lt;p&gt;According to &lt;a href=&quot;https://github.com/golang/go/wiki/PackageManagementTools&quot;&gt;PackageManagementTools&lt;/a&gt; the official package manager is &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Warning!!!:&lt;/b&gt; One big bummer is that even when the Go team says that dep is the official dependency manager, you will notice that the dep page states that:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Dep is a prototype dependency management tool. It requires Go 1.7 or newer to compile.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Dep is NOT an official tool. It is not (yet) blessed by the Go team.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It IS, however, the consensus effort of most of the Go community, and being integrated into the &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt; toolchain is the goal.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Pre-alpha. Lots of functionality is knowingly missing or broken. The repository is open to solicit feedback and contributions from the community.
-Please see below for feedback and contribution guidelines.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;usage-taken-from-dep-&quot;&gt;Usage (taken from &lt;a href=&quot;https://github.com/golang/dep&quot;&gt;dep&lt;/a&gt; )&lt;/h3&gt;
-
-&lt;p&gt;Get dep tool via&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;go get -u github.com/golang/dep/...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Typical usage on a new repo might be&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep init
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure -update
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;To update a dependency to a new version, you might run&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure github.com/gorilla/websocket@^1.1.0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Then run&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;dep ensure
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;To make sure that dep downloaded the package, run:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dep status
-PROJECT                       CONSTRAINT  VERSION  REVISION  LATEST  PKGS USED
-github.com/gorilla/websocket  ^1.1.0      v1.1.0   3ab3a8b   v1.1.0  1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;Seems like godep and dep are two real options to use, I will try to use dep and I’ll share my experiences through this blog.&lt;/p&gt;</content><summary type="html">Objectives</summary></entry></feed>
+&lt;p&gt;f: This options tells tar that you are going to give it a file name to work with.&lt;/p&gt;</content><summary type="html">If Your File Extension is .tar.gz (or .tgz)</summary></entry></feed>
