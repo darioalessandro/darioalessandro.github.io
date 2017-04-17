@@ -166,6 +166,370 @@
 
 <p><strong>NOTE</strong> always start with subquery.</p>
 
+<h2 id="single-row-subquery-in-a-select-clause">Single-row subquery in a select clause</h2>
+
+<p>We want to compare prices of each book against the average price of all books and need to find between each price and the
+average.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="nv">"Price"</span><span class="p">,</span>
+<span class="n">TO_CHAR</span><span class="p">(</span> <span class="n">retail</span> <span class="o">-</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">books</span><span class="p">)</span> <span class="p">,</span><span class="s1">'$999990.99'</span><span class="p">)</span> <span class="nv">"Price - Avg"</span>
+<span class="k">FROM</span> <span class="n">books</span><span class="p">;</span>
+</code></pre>
+</div>
+<h1 id="single-row-subquery-in-a-from-clause">Single-row subquery in a <strong>FROM</strong> clause</h1>
+
+<p>Which book has retail price above the median retail price of all books?</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="nv">"Price"</span><span class="p">,</span>
+        <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="s1">'$990.99'</span><span class="p">)</span> <span class="nv">"Median"</span>
+<span class="k">FROM</span>    <span class="n">books</span><span class="p">,</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">MEDIAN</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span> <span class="n">X</span> <span class="k">FROM</span> <span class="n">books</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="n">retail</span> <span class="o">&gt;</span> <span class="n">X</span><span class="p">;</span>
+
+</code></pre>
+</div>
+
+<h1 id="single-row-subquery-in-a-having">Single-row subquery in a HAVING</h1>
+
+<p>List books categories that have a higher average expected profit than the average expected profit from books in
+Literature category</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">category</span><span class="p">,</span>
+<span class="n">TO_CHAR</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">retail</span><span class="o">-</span><span class="n">cost</span><span class="p">),</span> <span class="s1">'$99990.99'</span> <span class="nv">"Avg Profit"</span>
+<span class="k">FROM</span> <span class="n">books</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">category</span>
+<span class="k">HAVING</span> <span class="k">AVG</span><span class="p">(</span><span class="n">retail</span><span class="o">-</span><span class="n">cost</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">retail</span><span class="o">-</span><span class="n">cost</span><span class="p">)</span>
+                           <span class="k">FROM</span> <span class="n">books</span>
+                           <span class="k">WHERE</span> <span class="n">category</span> <span class="o">=</span> <span class="s1">'LITERATURE'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="multiple-row-subqueries">Multiple-row subqueries</h2>
+
+<ul>
+  <li>
+    <p>Most common in the IN operator</p>
+  </li>
+  <li>
+    <p>Other ops are ANY, ALL and EXISTS.</p>
+  </li>
+</ul>
+
+<p>List the title, retail price and category of books with the retail price that matches the maximum retail price of books
+in each category.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span>
+        <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="nv">"Price"</span><span class="p">,</span> <span class="n">category</span>
+        <span class="k">FROM</span> <span class="n">books</span>
+        <span class="k">WHERE</span> <span class="n">retail</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span>     <span class="k">MAX</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span>
+                         <span class="k">FROM</span>       <span class="n">books</span>
+                         <span class="k">GROUP</span> <span class="k">BY</span>   <span class="n">category</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">category</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h1 id="all-and-any-operators">ALL and ANY operators</h1>
+
+<p>Find the title of a book which retail price is greater than the retail price of all books in the Cooking category</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="n">Price</span>
+<span class="k">FROM</span>    <span class="n">books</span>
+<span class="k">WHERE</span>   <span class="n">retail</span> <span class="o">&gt;</span> <span class="k">ALL</span> <span class="p">(</span>  <span class="k">SELECT</span>  <span class="n">retail</span>
+                        <span class="k">FROM</span>    <span class="n">books</span>
+                        <span class="k">WHERE</span>   <span class="n">category</span> <span class="o">=</span> <span class="s1">'COOKING'</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h1 id="alternative-to-all-operator-more-efficient">Alternative to ALL operator, more efficient</h1>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="n">Price</span>
+<span class="k">FROM</span>    <span class="n">books</span>
+<span class="k">WHERE</span>   <span class="n">retail</span> <span class="o">&gt;</span>     <span class="p">(</span>  <span class="k">SELECT</span>  <span class="k">MAX</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span>
+                        <span class="k">FROM</span>    <span class="n">books</span>
+                        <span class="k">WHERE</span>   <span class="n">category</span> <span class="o">=</span> <span class="s1">'COOKING'</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="multiple-row-subquery---any-operator">Multiple row subquery - ANY operator</h2>
+
+<p>FInd the title of book having a retail price lower than the retail price of any book in the cooking cat.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="n">Price</span>
+<span class="k">FROM</span>    <span class="n">books</span>
+<span class="k">WHERE</span>   <span class="n">retail</span> <span class="o">&lt;</span> <span class="k">ANY</span> <span class="p">(</span><span class="k">SELECT</span>    <span class="n">retail</span>
+                      <span class="k">FROM</span>      <span class="n">books</span>
+                      <span class="k">WHERE</span>     <span class="n">category</span> <span class="o">=</span> <span class="s1">'COOKING'</span><span class="p">)</span>
+<span class="k">AND</span> <span class="n">category</span> <span class="o">&lt;&gt;</span> <span class="s1">'COOKING'</span><span class="p">;</span>
+</code></pre>
+</div>
+<h2 id="multiple-row-subquery-in-a-having">Multiple-row subquery in a HAVING</h2>
+
+<p>Which order has a total greate than the totals of all individual orders placed by customers from Florida?</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">order</span><span class="o">#</span><span class="p">,</span>
+<span class="n">TO_CHAR</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">paideach</span><span class="o">*</span><span class="n">quantity</span><span class="p">),</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="nv">"O. Total"</span>
+<span class="k">FROM</span> <span class="n">orderitems</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">order</span><span class="o">#</span>
+<span class="k">HAVING</span>  <span class="k">SUM</span><span class="p">(</span><span class="n">paideach</span><span class="o">*</span><span class="n">quantity</span><span class="p">)</span> <span class="o">&gt;</span> <span class="k">ALL</span>
+        <span class="p">(</span><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">paideach</span><span class="o">*</span><span class="n">quantity</span><span class="p">)</span>
+        <span class="k">FROM</span> <span class="n">orders</span> <span class="k">JOIN</span> <span class="n">orderitems</span> <span class="k">USING</span> <span class="p">(</span><span class="k">order</span><span class="o">#</span><span class="p">)</span>
+                    <span class="k">JOIN</span> <span class="n">customers</span>  <span class="k">USING</span> <span class="p">(</span><span class="n">customer</span><span class="o">#</span><span class="p">)</span>
+        <span class="k">WHERE</span> <span class="k">state</span> <span class="o">=</span> <span class="s1">'FL'</span>
+        <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">order</span><span class="o">#</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="multiple-column-queries">Multiple-column queries</h2>
+
+<ul>
+  <li>
+    <p>Return more than one column in results and possibly more than one row.</p>
+  </li>
+  <li>
+    <p>If used in a <strong>WHERE</strong> clause:</p>
+
+    <ul>
+      <li>
+        <p>The <strong>IN</strong> operator is required.</p>
+      </li>
+      <li>
+        <p>Columns listed on the left side of the IN operator must be enclosed within parentheses and in the same order as the
+  columns listed in the subquery.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="example">Example</h1>
+
+<p>List the most expensive book in each category</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="n">Price</span><span class="p">,</span> <span class="n">category</span>
+<span class="k">FROM</span>    <span class="n">books</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">retail</span><span class="p">)</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">category</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span>
+                             <span class="k">FROM</span>   <span class="n">books</span>
+                             <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">category</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">category</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="multiple-column-subquery-in-a-from-clause">Multiple-column subquery in a FROM clause</h2>
+
+<p>List all books that have higher than average price in their category.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>      <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">retail</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="n">Price</span><span class="p">,</span>
+            <span class="n">category</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">cataverage</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="k">AVG</span>
+<span class="k">FROM</span>        <span class="n">books</span>   <span class="k">JOIN</span>    <span class="p">(</span><span class="k">SELECT</span>  <span class="n">category</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span>   <span class="n">cataverage</span>
+                            <span class="k">FROM</span> <span class="n">books</span>
+                            <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">category</span><span class="p">)</span>
+                    <span class="k">USING</span> <span class="p">(</span><span class="n">category</span><span class="p">)</span>
+<span class="k">WHERE</span>   <span class="n">retail</span> <span class="o">&gt;</span> <span class="n">cataverage</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="correlated-subqueries">Correlated subqueries</h2>
+
+<h1 id="exists-operator">EXISTS operator</h1>
+
+<p>List titles of all ordered books</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">title</span>
+<span class="k">FROM</span>    <span class="n">books</span>
+<span class="k">WHERE</span>   <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span>  <span class="n">isbn</span>
+                <span class="k">FROM</span>    <span class="n">orderitems</span>
+                <span class="k">WHERE</span>   <span class="n">books</span><span class="p">.</span><span class="n">isbn</span> <span class="o">=</span> <span class="n">orderitems</span><span class="p">.</span><span class="n">isbn</span><span class="p">);</span>
+</code></pre>
+</div>
+<h1 id="example-exists">Example EXISTS</h1>
+
+<p>List order number and customer number for orders placed on March 31, 2009 that included a book with ISBN = 8843172113</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="k">order</span><span class="o">#</span><span class="p">,</span> <span class="n">customer</span><span class="o">#</span>
+<span class="k">FROM</span>    <span class="n">orders</span> <span class="n">o</span>
+<span class="k">WHERE</span>   <span class="n">orderdate</span> <span class="o">=</span> <span class="s1">'31-MAR-09'</span>
+<span class="k">AND</span>     <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span>
+                <span class="k">FROM</span>    <span class="n">orderitems</span> <span class="n">OI</span>
+                <span class="k">WHERE</span> <span class="n">OI</span><span class="p">.</span><span class="k">order</span><span class="o">#</span> <span class="o">=</span> <span class="n">O</span><span class="p">.</span><span class="k">order</span><span class="o">#</span>
+                <span class="k">AND</span> <span class="n">isbn</span> <span class="o">=</span> <span class="s1">'8843172113'</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p><strong>NOTE</strong> professor advises to not use correlated subqueries.</p>
+
+<h2 id="top-n-analysis">TOP-N Analysis</h2>
+
+<ul>
+  <li>
+    <p>Performed utilizing a subquery (i.e., an inline view)</p>
+  </li>
+  <li>
+    <p><strong>ORDER BY</strong> clause within inline view is used to identify/arrange top values:</p>
+
+    <ul>
+      <li>Descending order for highest values</li>
+      <li>Ascending order for lowest values</li>
+    </ul>
+  </li>
+  <li>
+    <p>Data is extracted based on <strong>ROWNUM</strong> pseudo column, that identifies the “location” of rows in the inline view.</p>
+  </li>
+</ul>
+
+<p>List the title and profit of the 5 books with the highest expected profit</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">ROWNUM</span> <span class="k">as</span> <span class="n">Rank</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">profit</span><span class="p">,</span> <span class="s1">'$990.99'</span><span class="p">)</span> <span class="n">Profit</span>
+<span class="k">FROM</span>    <span class="p">(</span><span class="k">SELECT</span> <span class="n">title</span><span class="p">,</span> <span class="p">(</span><span class="n">retail</span> <span class="o">-</span> <span class="n">cost</span><span class="p">)</span> <span class="n">profit</span>
+         <span class="k">FROM</span> <span class="n">books</span>
+         <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">profit</span> <span class="k">DESC</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="n">ROWNUM</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2 id="null-values-in-subqueries-todo">NULL values in subqueries <strong>TODO</strong></h2>
+
+<h2 id="nesting-subqueries">Nesting subqueries</h2>
+
+<ul>
+  <li>
+    <p>Max of 255, if nested in the WHERE clause.</p>
+  </li>
+  <li>
+    <p>No limit if used in the FROM clause.</p>
+  </li>
+</ul>
+
+<p>Find the name of the customer(s) who has ordered the most books from JustLee Nooks (not including multiple quantities of
+the same book) on one order.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">customer</span><span class="o">#</span> <span class="o">||</span> <span class="s1">': '</span> <span class="o">||</span> <span class="n">firstname</span> <span class="o">||</span> <span class="s1">' '</span> <span class="o">||</span> <span class="n">lastname</span>
+        <span class="k">AS</span> <span class="nv">"Customer"</span>
+<span class="k">FROM</span>    <span class="n">customers</span> <span class="k">JOIN</span> <span class="n">orders</span> <span class="k">USING</span> <span class="p">(</span><span class="n">customer</span><span class="o">#</span><span class="p">)</span>
+<span class="k">WHERE</span>   <span class="k">order</span><span class="o">#</span> <span class="k">IN</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="k">order</span><span class="o">#</span>
+                    <span class="k">FROM</span>    <span class="n">orderitems</span>
+                    <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">order</span><span class="o">#</span>
+                    <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">))</span>
+                                        <span class="k">FROM</span>    <span class="n">orderitems</span>
+                                        <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">order</span><span class="o">#</span><span class="p">));</span>
+</code></pre>
+</div>
+
+<h2 id="generating-ranges-of-values">Generating Ranges of Values</h2>
+
+<h1 id="using-union">Using UNION</h1>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+    <span class="k">FROM</span>    <span class="p">(</span>   <span class="k">SELECT</span> <span class="mi">1</span> <span class="n">value</span> <span class="k">FROM</span> <span class="n">DUAL</span> <span class="k">UNION</span> <span class="k">ALL</span>
+                <span class="k">SELECT</span> <span class="mi">2</span>  <span class="k">FROM</span> <span class="n">DUAL</span> <span class="k">UNION</span> <span class="k">ALL</span>
+                <span class="k">SELECT</span> <span class="mi">3</span>  <span class="k">FROM</span> <span class="n">DUAL</span> <span class="k">UNION</span> <span class="k">ALL</span>
+                <span class="k">SELECT</span> <span class="mi">4</span>  <span class="k">FROM</span> <span class="n">DUAL</span> <span class="k">UNION</span> <span class="k">ALL</span>
+                <span class="k">SELECT</span> <span class="mi">5</span>  <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h1 id="using-group-by-and-cube">Using GROUP BY and CUBE</h1>
+
+<p>This works similar way as a UNION since CUBE generates many rows:</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">rownum</span>
+<span class="k">FROM</span>    <span class="p">(</span><span class="k">SELECT</span> <span class="mi">1</span> <span class="k">FROM</span> <span class="n">dual</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">CUBE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">WHERE</span>   <span class="n">rownum</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h1 id="using-big-enough-table-as-a-source">Using “big enough” table as a source</h1>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">rownum</span>
+<span class="k">FROM</span>    <span class="n">books</span>
+<span class="k">WHERE</span>   <span class="n">rownum</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h1 id="using-the-connect-by-clause">Using the CONNECT BY clause</h1>
+
+<p>We could use either rownum or level pseudo column</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>  <span class="n">rownum</span>
+<span class="k">FROM</span>    <span class="n">dual</span>
+<span class="k">CONNECT</span> <span class="k">BY</span> <span class="n">rownum</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>List 7 consecutive letters starting with A</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">CHR</span><span class="p">(</span><span class="n">ASCII</span><span class="p">(</span><span class="s1">'A'</span> <span class="o">+</span> <span class="k">level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">Letters</span>
+<span class="k">FROM</span>    <span class="n">dual</span>
+<span class="k">CONNECT</span> <span class="k">BY</span> <span class="k">level</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">;</span>
+
+<span class="n">LETTERS</span>
+<span class="c1">----------</span>
+<span class="n">A</span>
+<span class="n">B</span>
+<span class="k">C</span>
+<span class="n">D</span>
+<span class="n">E</span>
+<span class="n">F</span>
+<span class="k">G</span>
+</code></pre>
+</div>
+
+<p>List cates of the 5 consecutive Sundays starting with 20-Mar-2016</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">date</span> <span class="s1">'2016-03-20'</span> <span class="o">+</span> <span class="p">(</span><span class="k">level</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span> <span class="o">*</span><span class="mi">7</span><span class="p">)</span> <span class="n">Sundays</span>
+<span class="k">FROM</span> <span class="n">dual</span>
+<span class="k">CONNECT</span> <span class="k">BY</span> <span class="k">level</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="n">SUNDAYS</span>
+<span class="c1">----------</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">MAR</span><span class="o">-</span><span class="mi">16</span>
+<span class="mi">27</span><span class="o">-</span><span class="n">MAR</span><span class="o">-</span><span class="mi">16</span>
+<span class="mi">03</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">16</span>
+<span class="mi">10</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">16</span>
+<span class="mi">17</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">16</span>
+</code></pre>
+</div>
+
+<p>List names of months that are between 2 given dates (e.g., between March 23 and August 31.2016)</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">DATE</span><span class="p">,</span> <span class="s1">'2016-03-23'</span><span class="p">,</span> <span class="k">level</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">'Month'</span><span class="p">)</span>
+    <span class="k">AS</span> <span class="n">Months</span>
+<span class="k">FROM</span> <span class="n">dual</span>
+<span class="k">CONNECT</span> <span class="k">BY</span> <span class="k">level</span> <span class="o">&lt;=</span> <span class="n">MONTHS_BETWEEN</span><span class="p">(</span> <span class="n">TRUNC</span><span class="p">(</span><span class="n">DATE</span><span class="p">,</span> <span class="s1">'2016-08-31'</span><span class="p">,</span><span class="s1">'MM'</span><span class="p">),</span>
+                                    <span class="n">TRUNC</span><span class="p">(</span><span class="n">DATE</span><span class="p">,</span> <span class="s1">'2016-03-23'</span><span class="p">.</span><span class="s1">'MM'</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">MONTHS</span>
+<span class="c1">------------</span>
+<span class="n">March</span>
+<span class="n">April</span>
+<span class="n">May</span>
+<span class="n">June</span>
+<span class="n">July</span>
+<span class="n">August</span>
+</code></pre>
+</div>
+
+<p>For each day of the week list the number of orders. Include all 7 days.</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="k">SELECT</span>      <span class="n">Day_of_week</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">order</span><span class="o">#</span><span class="p">)</span> <span class="nv">"# of Orders"</span>
+<span class="k">FROM</span>        <span class="n">orders</span> <span class="k">RIGHT</span> <span class="k">OUTER</span> <span class="k">JOIN</span>
+            <span class="p">(</span><span class="k">SELECT</span> <span class="n">TO_CHAR</span><span class="p">((</span><span class="n">SYSDATE</span> <span class="o">+</span> <span class="k">level</span><span class="p">),</span> <span class="s1">'Day'</span> <span class="n">Day_of_week</span>
+             <span class="k">FROM</span> <span class="n">dual</span>
+             <span class="k">CONNECT</span> <span class="k">BY</span> <span class="k">level</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">)</span>
+                    <span class="k">ON</span> <span class="n">TO_CHAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">,</span> <span class="s1">'Day'</span><span class="p">)</span> <span class="o">=</span> <span class="n">Day_of_week</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Day_of_Week</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="k">DESC</span><span class="p">;</span>
+
+
+<span class="n">DAY_OF_WEEK</span>         <span class="o">#</span> <span class="k">of</span> <span class="n">Orders</span>
+<span class="c1">----------------------------------</span>
+<span class="n">Friday</span>                  <span class="mi">5</span>
+<span class="n">Saturday</span>                <span class="mi">4</span>
+<span class="p">...</span>
+<span class="n">Monday</span>                  <span class="mi">0</span>
+
+</code></pre>
+</div>
 
   </div>
 
