@@ -1,5 +1,340 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-17T15:46:00-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
-</subtitle><entry><title type="html">Database Management 95-703 - Subqueries</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/16/Database-Management-95-703-Subqueries.html" rel="alternate" type="text/html" title="Database Management 95-703 - Subqueries" /><published>2017-04-16T06:00:00-04:00</published><updated>2017-04-16T06:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/16/Database-Management-95%E2%80%93703-Subqueries</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/16/Database-Management-95-703-Subqueries.html">&lt;h2 id=&quot;outline&quot;&gt;Outline&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-17T22:08:10-04:00</updated><id>http://localhost:4000//</id><title type="html">Dario Alessandro Lencina-Talarico</title><subtitle>Blog written by Dario Alessandro Lencina-Talarico about technology and stuff.
+</subtitle><entry><title type="html">Database Management 95-703 - Introduction to Analytic SQL Functions</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/17/Database-Management-95-703-Intro-2-Analytic-SQL.html" rel="alternate" type="text/html" title="Database Management 95-703 - Introduction to Analytic SQL Functions" /><published>2017-04-17T06:00:00-04:00</published><updated>2017-04-17T06:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/17/Database-Management-95%E2%80%93703-Intro-2-Analytic-SQL</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/17/Database-Management-95-703-Intro-2-Analytic-SQL.html">&lt;h2 id=&quot;outline&quot;&gt;Outline&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ranking functions:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;ROW_NUMBER, RANK, DENSE_RANK, NTILE and PERCENT_RANK.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Paritioning and Windowing clauses&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Window functions:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;FIRST, LAST, LAG and LEAD&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Moving Average (MA) application.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;analytic-functions&quot;&gt;Analytic Functions&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Analytic function is performed on a table created by a query (or on each identified subset within the table)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Allow creating queries that would otherwise require multiple intermediary steps.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Present a simple solution to a complex query problem.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Are used in SELECT clause&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Not allowed in WHERE and HAVING clauses.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;More than one analytic function can be used in a single SELECT clause.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Available in Oracle:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Ranking functions&lt;/li&gt;
+      &lt;li&gt;Windowing functions&lt;/li&gt;
+      &lt;li&gt;Other&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;syntax&quot;&gt;Syntax&lt;/h2&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Analytic_Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;analytic_clause&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;analytic_clause&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Order&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Partitioning&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Windowing&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;combination&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;ranking-funcions&quot;&gt;Ranking Funcions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;ROW_NUMBER()&lt;/strong&gt; - provides a sequence of integer that defines the order of rows being retrieved based on a criteria (an
+&lt;strong&gt;ORDER BY&lt;/strong&gt; clause).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RANK()&lt;/strong&gt; - similar to the above function but it gives the same rank when there’s a tie and skips values after the
+tie is considered.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DENSE_RANK()&lt;/strong&gt; - ties receive the same rank and the rank number following a tie gets the next value.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PERCENT_RANK()&lt;/strong&gt; - returns the percent rank of a value relative to a group of values.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CUME_DIST()&lt;/strong&gt; - returns a position of a value relative to a group of values.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NTILE()&lt;/strong&gt; - returns the group number that the given record belongs to when the whole set of values is divided into n
+equal groups.&lt;/p&gt;
+
+&lt;h2 id=&quot;window-functions&quot;&gt;Window functions&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;FIRST_VALUE()&lt;/strong&gt; returns the first value in an ordered set (in a window).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LAST_VALUE()&lt;/strong&gt; returns the last value in an ordered set (in a window).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LAG() &amp;amp; LEAD()&lt;/strong&gt; return a value from a row that is a certain number of rows away from the current row.&lt;/p&gt;
+
+&lt;h2 id=&quot;rank&quot;&gt;RANK&lt;/h2&gt;
+
+&lt;p&gt;Rank sales of books (product type 1) by employees for Jan 2003&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;First_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Last_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;employees2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emp_ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;employee_ID&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;prd_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;EMP_ID&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;FIRST_NAME&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;LAST_NAME&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;---------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;Roy&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;Red&lt;/span&gt;             &lt;span class=&quot;mi&quot;&gt;11034&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;Steve&lt;/span&gt;           &lt;span class=&quot;n&quot;&gt;Green&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;10034&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;Gerald&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;Gold&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;1234&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;         &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;row_number&quot;&gt;ROW_NUMBER()&lt;/h2&gt;
+
+&lt;p&gt;Rank sales of books (prod type 1) for Steve Green (ID = 21) for year 2003.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;ROW&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Row_No&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prd_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ROW_NO&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;          &lt;span class=&quot;k&quot;&gt;MONTH&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--------------------------------------&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;               &lt;span class=&quot;mi&quot;&gt;25057&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;45&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;               &lt;span class=&quot;mi&quot;&gt;21754&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;              &lt;span class=&quot;mi&quot;&gt;10034&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;null--values&quot;&gt;NULL  values&lt;/h2&gt;
+
+&lt;p&gt;Rank sales of different product types for employee Steven Green(ID = 21) for Aug 2003&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ROW_NUMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NULLS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;LAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_types&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prd_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_type_ID&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;PRODUCT&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CD&lt;/span&gt;              &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DVD&lt;/span&gt;             &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Different&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;same&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Book&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;17434&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Video&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;1734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;how-to-deal-with-ties&quot;&gt;How to deal with ties?&lt;/h2&gt;
+
+&lt;p&gt;Replace ROW_NUMBER -&amp;gt; RANK&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_types&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prd_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_type_ID&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;PRODUCT&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CD&lt;/span&gt;              &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DVD&lt;/span&gt;             &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Skipping&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Book&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;17434&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Video&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;1734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But use DENSE_RANK() to avoid skipping values&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;DENSE_RANK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_types&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prd_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_type_ID&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;PRODUCT&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CD&lt;/span&gt;              &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DVD&lt;/span&gt;             &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Book&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;17434&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Video&lt;/span&gt;            &lt;span class=&quot;mi&quot;&gt;1734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;top-n-analysis&quot;&gt;Top N analysis&lt;/h2&gt;
+
+&lt;p&gt;Find the top 5 monthly sales in 2003 by Steve Green. List the month as well as the product type.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Prod. Type&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_types&lt;/span&gt;
+                            &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prod_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_type_ID&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt;
+           &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;rank&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Type&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;MONTH&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;          &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;--------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DVD&lt;/span&gt;               &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;32754&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Book&lt;/span&gt;               &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;25057&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;45&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;CD&lt;/span&gt;                 &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;21734&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;82&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;other-ranking-functions&quot;&gt;Other ranking functions&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;PERCENT_RANK and CUME_DIST calculate the “relative standing” of the rank indicator relative to a group of values.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Following formulas are used:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Percent_Rank = (Row’s_Rank -1)/(Number_of_Rows - 1)&lt;/p&gt;
+
+&lt;p&gt;Cume_Dist = (Row’s_Rank)/(Number_of_Rows)&lt;/p&gt;
+
+&lt;h1 id=&quot;percent_rank&quot;&gt;PERCENT_RANK()&lt;/h1&gt;
+
+&lt;p&gt;What is the percent rank for sales of books (product type 1) for Steve Green for year 2003&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rank&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;TO_CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PERCENT_RANK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+               &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'9990.99'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'%'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Percent&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;emp_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;prd_type_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;MONTH&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;AMOUNT&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;RANK&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;PERCENT&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;---------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;25057&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;45&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;21754&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;09&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;20137&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;83&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;19854&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;57&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;10034&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;91&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;           &lt;span class=&quot;mi&quot;&gt;10034&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;        &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;91&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;ntile-function&quot;&gt;NTILE function&lt;/h2&gt;
+
+&lt;p&gt;Before calculating any value, the function divides the number of retrieved rows into “equal” number of segments / groups&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-The NTILE  function identified the segment that a row belongs to
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;All rows are “evenly” distributed into the segments.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- For example NTILE(4) will identify each row with value from 1 to 4 (as belonging to one of 4 segments) according
+to their rank as defined by the &quot;order by&quot; analytic clause.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Amount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;NTILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;4tile&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;MONTH&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;Amount&lt;/span&gt;          &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tile&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;---------------------------------------&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;                              &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;                              &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;                              &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;                               &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+
+&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;rows&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;example&quot;&gt;Example:&lt;/h1&gt;
+
+&lt;p&gt;The CIO wants to study the performance of employees based on their overall sales in 2003. He wants to know to which quarter
+of sales amount each employee belongs to.&lt;/p&gt;
+
+&lt;p&gt;He also plans to give a bonus of $10,000 to each employee in the top quarter of sales and $5,000 to each employee in the
+second quarter of sales.&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_name&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Employee&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;TO_CHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'$999,999.99'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Total Sales&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;NTILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Quarter&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;CASE&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;NTILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OVER&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;WHEN&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'$10,000.00'&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;WHEN&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'$5,000.00'&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;ELSE&lt;/span&gt;        &lt;span class=&quot;s1&quot;&gt;'    $0.00'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;END&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;&quot;Bonus&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;all_sales&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;employees2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;employee_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emp_ID&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2003&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IS&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;employee_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_name&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Employee&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;Total&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sales&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;Quarter&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bonus&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;-------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Steve&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Green&lt;/span&gt;         &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;466&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;997&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;84&lt;/span&gt;         &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Roy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Red&lt;/span&gt;                                 &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Gail&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Silver&lt;/span&gt;                             &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Sandra&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Smith&lt;/span&gt;                            &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Eileen&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Lane&lt;/span&gt;                             &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Gerald&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Gold&lt;/span&gt;                             &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;        &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;00&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;partition-by&quot;&gt;PARTITION BY&lt;/h2&gt;
+
+&lt;p&gt;It is used when we need to divide result sets into subsets.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- First, subsets/partitions of the data are defined.
+- Then, an analytic function is performed within each partition.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><summary type="html">Outline</summary></entry><entry><title type="html">Database Management 95-703 - Subqueries</title><link href="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/16/Database-Management-95-703-Subqueries.html" rel="alternate" type="text/html" title="Database Management 95-703 - Subqueries" /><published>2017-04-16T06:00:00-04:00</published><updated>2017-04-16T06:00:00-04:00</updated><id>http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/16/Database-Management-95%E2%80%93703-Subqueries</id><content type="html" xml:base="http://localhost:4000/programming/oracle/general/motors/tep/technical/education/program/sql/database/db/casteel/11g/2017/04/16/Database-Management-95-703-Subqueries.html">&lt;h2 id=&quot;outline&quot;&gt;Outline&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Defining and using subqueries:
@@ -3136,16 +3471,4 @@ Unique                      UK&lt;/p&gt;
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;
    &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><summary type="html">Outline</summary></entry><entry><title type="html">8. Use sed command to replace file contents</title><link href="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html" rel="alternate" type="text/html" title="8. Use sed command to replace file contents" /><published>2017-04-04T11:00:00-04:00</published><updated>2017-04-04T11:00:00-04:00</updated><id>http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents</id><content type="html" xml:base="http://localhost:4000/programming/google/terminal/general/motors/unix/linux/java/devops/2017/04/04/use-sed-command-to-replace-file-contents.html">&lt;h2 id=&quot;in-place-text-replacement&quot;&gt;In place text replacement:&lt;/h2&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/oldword/newword/'&lt;/span&gt; &amp;lt;file&amp;gt;.txt
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;practical-usecase-change-default-memory-of-zookeeper&quot;&gt;Practical usecase: Change default memory of Zookeeper.&lt;/h2&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sed -i &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/KAFKA_HEAP_OPTS=&quot;-Xmx512M -Xms512M&quot;/KAFKA_HEAP_OPTS=&quot;-Xmx256M -Xms256M&quot;/'&lt;/span&gt; zookeeper-server-start.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Will replace the KAFKA_HEAP_OPTS initial values from “-Xmx512M -Xms512M” to “-Xmx256M -Xms256M”.&lt;/p&gt;</content><summary type="html">In place text replacement:</summary></entry></feed>
+&lt;/div&gt;</content><summary type="html">Outline</summary></entry></feed>
